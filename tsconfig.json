@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowUnreachableCode": false,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "target": "es5"
+    }
+}

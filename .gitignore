@@ -1,0 +1,13 @@
+# Logs
+npm-debug.log*
+
+# Compiled output
+build
+server/public
+
+# Dependency directories
+node_modules
+src/client/libraries
+
+# Editors
+.vscode
