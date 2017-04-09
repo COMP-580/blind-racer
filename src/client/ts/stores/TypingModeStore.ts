@@ -1,6 +1,9 @@
+/* tslint:disable:no-empty */
+
 import { AbstractStoreModel, alt } from "../alt";
-import TypingActions from "../actions/TypingActions"
-import SpeechActions from "../actions/SpeechActions"
+
+import SpeechActions from "../actions/SpeechActions";
+import TypingActions from "../actions/TypingActions";
 
 interface ITypingModeStoreState {
   mode: number;
@@ -9,22 +12,24 @@ interface ITypingModeStoreState {
 }
 
 class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> implements ITypingModeStoreState {
+
   public mode: number;
   public lastPressedKey: string;
   public keyPressHandler: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+
   constructor() {
     super();
     this.mode = -1;
     this.lastPressedKey = "";
     this.keyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {};
-    this.bindAction(TypingActions.changeMode,this.changeMode);
+    this.bindAction(TypingActions.changeMode, this.changeMode);
   }
 
   public changeMode(mode: number) {
     this.mode = mode;
-    if(mode === 0){
+    if (mode === 0) {
       this.keyPressHandler = this.standardMode;
-    }else{
+    } else {
       this.keyPressHandler = this.blindMode;
     }
   }
@@ -33,7 +38,7 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
     e.preventDefault();
     let c = String.fromCharCode(e.which);
     if (c === " ") {
-      let word = (<any>global).$("#text-input").val();
+      let word = (<any> global).$("#text-input").val();
       TypingActions.typeWord(word);
     } else {
       TypingActions.typeChar(c);
@@ -47,7 +52,7 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
     let c = String.fromCharCode(e.which);
     if (c === this.lastPressedKey) {
       if (c === " ") {
-      let word = (<any>global).$("#text-input").val();
+      let word = (<any> global).$("#text-input").val();
       TypingActions.typeWord(word);
       } else {
         TypingActions.typeChar(c);
@@ -56,11 +61,7 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
       this.lastPressedKey = c;
       SpeechActions.sayText(c);
     }
-
-
   }
-
-
 
 }
 let TypingModeStore = alt.createStore(AltTypingModeStore);

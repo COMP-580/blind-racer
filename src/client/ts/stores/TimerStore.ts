@@ -1,5 +1,9 @@
 import { AbstractStoreModel, alt } from "../alt";
-import TypingActions from "../actions/TypingActions"
+
+import TypingActions from "../actions/TypingActions";
+
+// Declare global variables
+let window = (<any> global).window;
 
 interface ITimerStoreState {
   wpm: number;
@@ -19,14 +23,13 @@ class AltTimerStore extends AbstractStoreModel<ITimerStoreState> implements ITim
   public updatesPerSecond: number;
   public timerInterval: NodeJS.Timer;
 
-  public keyPressHandler: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   constructor() {
     super();
 
     this.wpm = 0;
     this.typedWords = 0;
     this.elapsedTime = 0;
-    this.startTime = performance.now();
+    this.startTime = window ? window.performance.now() : null;
     this.updatesPerSecond = 10;
     this.timerInterval = null;
 
@@ -41,11 +44,11 @@ class AltTimerStore extends AbstractStoreModel<ITimerStoreState> implements ITim
   }
 
   public onStartTyping() {
-    console.log("start typing");
+    // console.log("start typing");
     this.wpm = 0;
     this.typedWords = 0;
     this.elapsedTime = 0;
-    this.startTime = performance.now();
+    this.startTime = window ? window.performance.now() : null;
 
     this.timerInterval = setInterval(() => {
       TypingActions.updateTimer();
@@ -53,13 +56,13 @@ class AltTimerStore extends AbstractStoreModel<ITimerStoreState> implements ITim
   }
 
   public onUpdateTimer() {
-    let endTime = performance.now();
+    let endTime = window ? window.performance.now() : null;
     this.elapsedTime = endTime - this.startTime;
     this.wpm = Math.floor(this.typedWords / (this.elapsedTime / (60 * 1000)));
   }
 
   public onStopTyping() {
-    console.log("stop typing");
+    // console.log("stop typing");
     clearTimeout(this.timerInterval);
   }
 
