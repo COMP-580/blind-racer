@@ -33,6 +33,7 @@ class AltBoxStore extends AbstractStoreModel<IBoxStoreState> implements IBoxStor
       this.unfinishedWords.shift();
       (<any>SpeechActions).sayText.defer(this.currentWord);
       (<any>SoundActions).playSound.defer("ding");
+      (<any>TypingActions).typedWord.defer(word);
 
     }else{
       (<any>SoundActions).playSound.defer("inception-horn");
@@ -40,6 +41,7 @@ class AltBoxStore extends AbstractStoreModel<IBoxStoreState> implements IBoxStor
     if (!this.currentWord){
       console.log("fin");
       (<any>SoundActions).playSound.defer("party-horn");
+      (<any>TypingActions).stopTyping.defer();
     }
   }
 

@@ -46,3 +46,4 @@ SoundActions.loadSound({name: "inception-horn", path: "assets/sounds/inception-h
 SoundActions.loadSound({name: "ding", path: "assets/sounds/ding.mp3", volume: 0.1});
 SoundActions.loadSound({name: "party-horn", path: "assets/sounds/party-horn.mp3"});
 SoundActions.playSound("ding");
+TypingActions.startTyping();

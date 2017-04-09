@@ -28,7 +28,7 @@ class TextInput extends React.Component<any, any> {
   public render() {
     return(
       <div className="row">
-        <input className="form-control" type="text" defaultValue={this.props.defaultValue} id={this.props.id} onKeyPress={this.onKeyPress.bind(this)} />
+        <input className="form-control" autoFocus type="text" defaultValue={this.props.defaultValue} id={this.props.id} onKeyPress={this.onKeyPress.bind(this)} />
       </div>
     );
   }
