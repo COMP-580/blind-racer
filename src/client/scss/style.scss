@@ -1,1 +1,17 @@
 @import "../libraries/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.word-finished{
+  background-color: limegreen;
+}
+
+.word-current{
+  background-color: yellow;
+}
+
+.word-unfinished{
+  background-color: white;
+}
+
+.p-inline{
+  display:inline;
+}
