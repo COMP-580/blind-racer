@@ -21,6 +21,7 @@ class AltSpeechStore extends AbstractStoreModel<ISpeechStoreState> implements IS
 
   public onSayText(text: string) {
     speak(text, {speed: 175});
+    console.log(text);
   }
 
 }

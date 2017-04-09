@@ -6,11 +6,10 @@
  * Load libraries
  */
 
-let $ = require("../libraries/jquery/dist/jquery");
-(global as any).jQuery = $;
-(global as any).$ = $;
-require("../libraries/bootstrap-sass/assets/javascripts/bootstrap");
-import "howler";
+// let $ = require("../libraries/jquery/dist/jquery");
+// (global as any).jQuery = $;
+// (global as any).$ = $;
+// require("../libraries/bootstrap-sass/assets/javascripts/bootstrap");
 
 /**
  * Bootstrap files
