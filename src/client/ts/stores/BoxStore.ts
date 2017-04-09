@@ -1,6 +1,7 @@
 import { AbstractStoreModel, alt } from "../alt";
 import TypingActions from "../actions/TypingActions"
 import SpeechActions from "../actions/SpeechActions"
+import SoundActions from "../actions/SoundActions"
 
 interface IBoxStoreState {
   words: string;
@@ -31,10 +32,14 @@ class AltBoxStore extends AbstractStoreModel<IBoxStoreState> implements IBoxStor
       this.currentWord=this.unfinishedWords[0];
       this.unfinishedWords.shift();
       (<any>SpeechActions).sayText.defer(this.currentWord);
+      (<any>SoundActions).playSound.defer("ding");
 
+    }else{
+      (<any>SoundActions).playSound.defer("inception-horn");
     }
-    if (this.unfinishedWords.length==0){
+    if (!this.currentWord){
       console.log("fin");
+      (<any>SoundActions).playSound.defer("party-horn");
     }
   }
 

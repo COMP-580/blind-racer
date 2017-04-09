@@ -10,17 +10,20 @@ let $ = require("../libraries/jquery/dist/jquery");
 (global as any).jQuery = $;
 (global as any).$ = $;
 require("../libraries/bootstrap-sass/assets/javascripts/bootstrap");
+import "howler";
 
 /**
  * Bootstrap files
  */
 import "./actions/SampleActions";
 import TypingActions from  "./actions/TypingActions";
+import SoundActions from "./actions/SoundActions";
 import "./stores/SampleStore";
 import "./stores/BoxStore";
 import "./stores/TypingModeStore"
 import "./stores/InputTextStore"
 import "./stores/SpeechStore";
+import "./stores/SoundStore";
 
 
 /**
@@ -39,3 +42,7 @@ ReactDOM.render(
  * Initialization
  */
 TypingActions.changeMode(0);
+SoundActions.loadSound({name: "inception-horn", path: "assets/sounds/inception-horn.mp3"});
+SoundActions.loadSound({name: "ding", path: "assets/sounds/ding.mp3", volume: 0.1});
+SoundActions.loadSound({name: "party-horn", path: "assets/sounds/party-horn.mp3"});
+SoundActions.playSound("ding");
