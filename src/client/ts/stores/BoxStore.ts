@@ -2,6 +2,7 @@ import { AbstractStoreModel, alt } from "../alt";
 
 import SoundActions from "../actions/SoundActions";
 import SpeechActions from "../actions/SpeechActions";
+import TimingActions from "../actions/timingActions";
 import TypingActions from "../actions/TypingActions";
 
 interface IBoxStoreState {
@@ -41,7 +42,7 @@ class AltBoxStore extends AbstractStoreModel<IBoxStoreState> implements IBoxStor
     }
     if (!this.currentWord) {
       (<any> SoundActions).playSound.defer("party-horn");
-      (<any> TypingActions).stopTyping.defer();
+      (<any> TimingActions).stopTyping.defer();
     }
   }
 
