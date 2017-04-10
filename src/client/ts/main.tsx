@@ -14,10 +14,8 @@
 /**
  * Bootstrap files
  */
-import "./actions/SampleActions";
 import TypingActions from  "./actions/TypingActions";
 import SoundActions from "./actions/SoundActions";
-import "./stores/SampleStore";
 import "./stores/BoxStore";
 import "./stores/TypingModeStore"
 import "./stores/InputTextStore"
