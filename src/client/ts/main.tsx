@@ -26,12 +26,15 @@ import TimingActions from "./actions/TimingActions";
 import TypingActions from  "./actions/TypingActions";
 
 // Stores
-import "./stores/BoxStore";
-import "./stores/TypingModeStore"
-import "./stores/InputTextStore"
-import "./stores/SpeechStore";
+import "./stores/GameTextStore";
+import "./stores/ModalStore";
+import "./stores/SettingsStore";
 import "./stores/SoundStore";
-
+import "./stores/SpeechStore";
+import "./stores/StatStore";
+import "./stores/TimerStore";
+import "./stores/TypingModestore";
+import "./stores/UserInputStore";
 
 /**
  * Load the main react component
@@ -51,7 +54,7 @@ ReactDOM.render(
 
 // TODO: read cookies and set the correct settings
 import TypingMode from "./enums/TypingMode";
-SettingsActions.changeTypingMode(TypingMode.standard);
+SettingsActions.changeTypingMode(TypingMode.STANDARD);
 SoundActions.loadSound({name: "inception-horn", path: "assets/sounds/inception-horn.mp3"});
 SoundActions.loadSound({name: "ding", path: "assets/sounds/ding.mp3", volume: 0.1});
 SoundActions.loadSound({name: "party-horn", path: "assets/sounds/party-horn.mp3"});

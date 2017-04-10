@@ -1,3 +1,9 @@
+/**
+ * SpeechStore
+ *
+ * In charge of synthesizing speech.
+ */
+
 import { AbstractStoreModel, alt } from "../alt";
 
 import SpeechActions from "../actions/SpeechActions";
@@ -24,5 +30,6 @@ class AltSpeechStore extends AbstractStoreModel<ISpeechStoreState> implements IS
   }
 
 }
-let SpeechStore = alt.createStore(AltSpeechStore);
+
+let SpeechStore = alt.createStore(AltSpeechStore, "SpeechStore");
 export { ISpeechStoreState, SpeechStore }

@@ -1,3 +1,9 @@
+/**
+ * TimerStore
+ *
+ * In charge of calculating a user's wpm.
+ */
+
 import { AbstractStoreModel, alt } from "../alt";
 
 import TimingActions from "../actions/TimingActions";
@@ -66,5 +72,6 @@ class AltTimerStore extends AbstractStoreModel<ITimerStoreState> implements ITim
   }
 
 }
-let TimerStore = alt.createStore(AltTimerStore);
+
+let TimerStore = alt.createStore(AltTimerStore, "TimerStore");
 export { ITimerStoreState, TimerStore }

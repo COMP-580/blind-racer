@@ -5,7 +5,7 @@
  */
 
 const enum ColorTheme {
-  standard,
+  STANDARD,
 }
 
 export default ColorTheme;

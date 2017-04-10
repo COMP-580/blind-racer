@@ -2,11 +2,11 @@ import { AbstractStoreModel, alt } from "../alt";
 
 import TypingActions from "../actions/TypingActions";
 
-interface IInputTextStoreState {
+interface IUserInputStoreState {
   currentWord: string;
 }
 
-class AltInputTextStore extends AbstractStoreModel<IInputTextStoreState> implements IInputTextStoreState {
+class AltUserInputStore extends AbstractStoreModel<IUserInputStoreState> implements IUserInputStoreState {
 
   public currentWord: string;
   public keyPressHandler: (e: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -29,6 +29,5 @@ class AltInputTextStore extends AbstractStoreModel<IInputTextStoreState> impleme
   }
 
 }
-let InputTextStore = alt.createStore(AltInputTextStore);
-
-export { IInputTextStoreState, InputTextStore }
+let UserInputStore = alt.createStore(AltUserInputStore, "UserInputStore");
+export { IUserInputStoreState, UserInputStore }

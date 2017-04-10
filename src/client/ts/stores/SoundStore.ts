@@ -1,3 +1,9 @@
+/**
+ * SoundStore
+ *
+ * In charge of loading and playing sounds.
+ */
+
 import { AbstractStoreModel, alt } from "../alt";
 
 import SoundActions from "../actions/SoundActions";
@@ -14,6 +20,7 @@ class AltSoundStore extends AbstractStoreModel<ISoundStoreState> implements ISou
   constructor() {
     super();
     this.sounds = {};
+
     this.bindAction(SoundActions.loadSound, this.onLoadSound);
     this.bindAction(SoundActions.playSound, this.onPlaySound);
   }
@@ -26,10 +33,11 @@ class AltSoundStore extends AbstractStoreModel<ISoundStoreState> implements ISou
     this.sounds[s.name] = sound;
 
   }
+
   public onPlaySound(name: string) {
     this.sounds[name].play();
   }
 
 }
-let SoundStore = alt.createStore(AltSoundStore);
+let SoundStore = alt.createStore(AltSoundStore, "SoundStore");
 export { ISoundStoreState, SoundStore }

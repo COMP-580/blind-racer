@@ -5,8 +5,8 @@
  */
 
 const enum TypingMode {
-  standard,
-  repeat,
+  STANDARD,
+  REPEAT,
 }
 
 export default TypingMode;

@@ -6,19 +6,17 @@
 
 import { AbstractActions, alt } from "../alt";
 
+import Modal from "../enums/Modal";
+
 interface IModalActions {
-  openAbout(): void;
-  openHelp(): void;
-  openSettings(): void;
+  openModal(modal: Modal): void;
 }
 
 class ModalActions extends AbstractActions {
   constructor(config: AltJS.Alt) {
     super(config);
     this.generateActions(
-      "openAbout",
-      "openHelp",
-      "openSettings",
+      "openModal",
     );
   }
 }

@@ -1,3 +1,9 @@
+/**
+ * TypingModeStore
+ *
+ * Handles the different typing modes.
+ */
+
 /* tslint:disable:no-empty */
 
 import { AbstractStoreModel, alt } from "../alt";
@@ -22,7 +28,7 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
 
   constructor() {
     super();
-    this.mode = TypingMode.standard;
+    this.mode = TypingMode.STANDARD;
     this.lastPressedKey = "";
     this.keyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {};
     this.bindAction(SettingsActions.changeTypingMode, this.onChangeTypingMode);
@@ -30,9 +36,9 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
 
   public onChangeTypingMode(mode: TypingMode) {
     this.mode = mode;
-    if (mode === TypingMode.standard) {
+    if (mode === TypingMode.STANDARD) {
       this.keyPressHandler = this.standardMode;
-    } else if (mode === TypingMode.repeat) {
+    } else if (mode === TypingMode.REPEAT) {
       this.keyPressHandler = this.blindMode;
     }
   }
@@ -66,5 +72,5 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
   }
 
 }
-let TypingModeStore = alt.createStore(AltTypingModeStore);
+let TypingModeStore = alt.createStore(AltTypingModeStore, "TypingModeStore");
 export { ITypingModeStoreState, TypingModeStore }
