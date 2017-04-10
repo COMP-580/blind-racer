@@ -35,7 +35,7 @@ class AltBoxStore extends AbstractStoreModel<IBoxStoreState> implements IBoxStor
       this.unfinishedWords.shift();
       (<any> SpeechActions).sayText.defer(this.currentWord);
       (<any> SoundActions).playSound.defer("ding");
-      (<any> TypingActions).typedWord.defer(word);
+      (<any> TypingActions).wordSuccess.defer(word);
     } else {
       (<any> SoundActions).playSound.defer("inception-horn");
     }

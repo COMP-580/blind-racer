@@ -14,8 +14,18 @@
 /**
  * Bootstrap files
  */
-import TypingActions from  "./actions/TypingActions";
+
+// Actions
+import GameActions from "./actions/GameActions";
+import LeaderboardActions from "./actions/LeaderboardActions";
+import ModalActions from "./actions/ModalActions";
+import SettingsActions from "./actions/SettingsActions";
 import SoundActions from "./actions/SoundActions";
+import SpeechActions from "./actions/SpeechActions";
+import TimingActions from "./actions/TimingActions";
+import TypingActions from  "./actions/TypingActions";
+
+// Stores
 import "./stores/BoxStore";
 import "./stores/TypingModeStore"
 import "./stores/InputTextStore"
@@ -38,9 +48,12 @@ ReactDOM.render(
 /**
  * Initialization
  */
-TypingActions.changeMode(0);
+
+// TODO: read cookies and set the correct settings
+import TypingMode from "./enums/TypingMode";
+SettingsActions.changeTypingMode(TypingMode.standard);
 SoundActions.loadSound({name: "inception-horn", path: "assets/sounds/inception-horn.mp3"});
 SoundActions.loadSound({name: "ding", path: "assets/sounds/ding.mp3", volume: 0.1});
 SoundActions.loadSound({name: "party-horn", path: "assets/sounds/party-horn.mp3"});
 SoundActions.playSound("ding");
-TypingActions.startTyping();
+TimingActions.startTyping();

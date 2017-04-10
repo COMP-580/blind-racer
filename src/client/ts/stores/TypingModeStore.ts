@@ -2,34 +2,37 @@
 
 import { AbstractStoreModel, alt } from "../alt";
 
+import SettingsActions from "../actions/SettingsActions";
 import SpeechActions from "../actions/SpeechActions";
 import TypingActions from "../actions/TypingActions";
 
+import TypingMode from "../enums/TypingMode";
+
 interface ITypingModeStoreState {
-  mode: number;
+  mode: TypingMode;
   lastPressedKey: string;
   keyPressHandler(e: React.KeyboardEvent<HTMLInputElement>): void;
 }
 
 class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> implements ITypingModeStoreState {
 
-  public mode: number;
+  public mode: TypingMode;
   public lastPressedKey: string;
   public keyPressHandler: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 
   constructor() {
     super();
-    this.mode = -1;
+    this.mode = TypingMode.standard;
     this.lastPressedKey = "";
     this.keyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {};
-    this.bindAction(TypingActions.changeMode, this.changeMode);
+    this.bindAction(SettingsActions.changeTypingMode, this.onChangeTypingMode);
   }
 
-  public changeMode(mode: number) {
+  public onChangeTypingMode(mode: TypingMode) {
     this.mode = mode;
-    if (mode === 0) {
+    if (mode === TypingMode.standard) {
       this.keyPressHandler = this.standardMode;
-    } else {
+    } else if (mode === TypingMode.repeat) {
       this.keyPressHandler = this.blindMode;
     }
   }
@@ -43,7 +46,6 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
     } else {
       TypingActions.typeChar(c);
     }
-
   }
 
   public blindMode(e: React.KeyboardEvent<HTMLInputElement>) {
