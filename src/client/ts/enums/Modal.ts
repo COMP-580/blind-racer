@@ -10,4 +10,4 @@ const enum Modal {
   SETTINGS,
 }
 
-export default Modal;
+export { Modal };

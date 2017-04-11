@@ -12,7 +12,7 @@ import SettingsActions from "../actions/SettingsActions";
 import SpeechActions from "../actions/SpeechActions";
 import TypingActions from "../actions/TypingActions";
 
-import TypingMode from "../enums/TypingMode";
+import { TypingMode } from "../enums/TypingMode";
 
 interface ITypingModeStoreState {
   mode: TypingMode;

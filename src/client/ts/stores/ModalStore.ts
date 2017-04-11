@@ -8,7 +8,7 @@ import { AbstractStoreModel, alt } from "../alt";
 
 import ModalActions from "../actions/ModalActions";
 
-import Modal from "../enums/Modal";
+import { Modal } from "../enums/Modal";
 
 interface IModalStoreState {
   currentModal: string;

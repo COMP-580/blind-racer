@@ -262,7 +262,7 @@ gulp.task("watch-client-ts", function() {
   let bundler = watchify(browserify(config.client.ts.src, {
     cache: {},
     packageCache: {},
-    // debug: true
+    debug: true
   })
   .plugin(tsify)
   .transform(babelify.configure({

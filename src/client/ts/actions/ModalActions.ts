@@ -6,7 +6,7 @@
 
 import { AbstractActions, alt } from "../alt";
 
-import Modal from "../enums/Modal";
+import { Modal } from "../enums/Modal";
 
 interface IModalActions {
   openModal(modal: Modal): void;

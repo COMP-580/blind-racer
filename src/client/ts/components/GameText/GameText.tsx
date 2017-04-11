@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { GameTextStore, IGameTextStoreState } from "../stores/GameTextStore";
+import { GameTextStore, IGameTextStoreState } from "../../stores/GameTextStore";
 
-class ViewBox extends React.Component<any, any> {
+class GameText extends React.Component<any, any> {
 
   constructor() {
     super();
@@ -44,4 +44,4 @@ class ViewBox extends React.Component<any, any> {
   }
 }
 
-export default ViewBox;
+export default GameText;

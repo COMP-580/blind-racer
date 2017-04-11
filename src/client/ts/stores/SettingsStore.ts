@@ -9,8 +9,8 @@ import { AbstractStoreModel, alt } from "../alt";
 
 import SettingsActions from "../actions/SettingsActions";
 
-import ColorTheme from "../enums/ColorTheme";
-import TypingMode from "../enums/TypingMode";
+import { ColorTheme } from "../enums/ColorTheme";
+import { TypingMode } from "../enums/TypingMode";
 
 interface ISettingsStoreState {
   colorTheme: ColorTheme;

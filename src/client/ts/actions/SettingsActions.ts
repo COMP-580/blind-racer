@@ -6,8 +6,8 @@
 
 import { AbstractActions, alt } from "../alt";
 
-import ColorTheme from "../enums/ColorTheme";
-import TypingMode from "../enums/TypingMode";
+import { ColorTheme } from "../enums/ColorTheme";
+import { TypingMode } from "../enums/TypingMode";
 
 interface ISettingsActions {
   changeColorTheme(theme: ColorTheme): void;
