@@ -3,7 +3,7 @@ import { AbstractStoreModel, alt } from "../alt";
 import GameActions from "../actions/GameActions";
 import SoundActions from "../actions/SoundActions";
 import SpeechActions from "../actions/SpeechActions";
-import TimingActions from "../actions/timingActions";
+import TimingActions from "../actions/TimingActions";
 import TypingActions from "../actions/TypingActions";
 
 interface IGameTextStoreState {
@@ -49,7 +49,9 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
       this.finishedWords.push(word);
       this.currentWord = this.unfinishedWords[0];
       this.unfinishedWords.shift();
-      (<any> SpeechActions).sayText.defer(this.currentWord);
+      if (this.currentWord) {
+        (<any> SpeechActions).sayText.defer(this.currentWord);
+      }
       (<any> SoundActions).playSound.defer("ding");
       (<any> TypingActions).wordSuccess.defer(word);
     } else {
