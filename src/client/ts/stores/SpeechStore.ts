@@ -1,7 +1,7 @@
 /**
  * SpeechStore
  *
- * In charge of synthesizing speech.
+ * In charge of synthesizing speech. Uses ResponsiveVoiceJs as its underlying implementation.
  */
 
 import { AbstractStoreModel, alt } from "../alt";

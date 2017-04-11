@@ -1,5 +1,7 @@
 /**
- * Main entry point for bootstrapping
+ * main
+ *
+ * Main entry point for bootstrapping and loading the app.
  */
 
 /**

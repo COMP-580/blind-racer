@@ -1,7 +1,7 @@
 /**
  * SoundStore
  *
- * In charge of loading and playing sounds.
+ * In charge of loading and playing sounds. Uses the Howler library for its underlying implementation.
  */
 
 import { AbstractStoreModel, alt } from "../alt";

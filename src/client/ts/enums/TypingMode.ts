@@ -1,7 +1,7 @@
 /**
  * TypingMode
  *
- * Different typing modes.
+ * Different typing modes. Used for changing the typing mode.
  */
 
 const enum TypingMode {

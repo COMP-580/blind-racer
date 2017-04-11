@@ -1,7 +1,8 @@
 /**
  * GameTextStore
  *
- * Handles the state of the game text.
+ * Handles the state of the game text. It will fetch a phrase for the user to type, and also store the different types
+ * of text data while the user is typing.
  */
 
 import { AbstractStoreModel, alt } from "../alt";

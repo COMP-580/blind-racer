@@ -1,3 +1,9 @@
+/**
+ * alt
+ *
+ * Alt bootstrapper and abstract implementations of actions and stores.
+ */
+
 /* tslint:disable:no-empty */
 /* tslint:disable:max-classes-per-file */
 

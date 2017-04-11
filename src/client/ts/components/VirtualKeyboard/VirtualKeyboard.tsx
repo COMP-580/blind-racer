@@ -1,3 +1,9 @@
+/**
+ * VirtualKeyboard
+ *
+ * Container for a virtual keyboard. It does not have any user functionality, but it will display pressed keys.
+ */
+
 import * as React from "react";
 
 class VirtualKeyboard extends React.Component<any, any> {

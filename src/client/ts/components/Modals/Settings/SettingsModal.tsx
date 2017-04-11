@@ -1,3 +1,9 @@
+/**
+ * SettingsModal
+ *
+ * Modal for configuring the different client settings.
+ */
+
 import * as React from "react";
 
 class SettingsModal extends React.Component<any, any> {

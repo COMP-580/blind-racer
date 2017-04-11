@@ -1,7 +1,7 @@
 /**
  * RestClient
  *
- * Utility class for making REST calls
+ * Utility class for making REST calls.
  */
 
 class RestClient {

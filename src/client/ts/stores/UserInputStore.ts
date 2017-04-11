@@ -1,7 +1,7 @@
 /**
  * UserInputStore
  *
- * Defines the state of the user input text box
+ * Defines the state of the user input text box. It also defines how the value of the input text.
  */
 
 import { AbstractStoreModel, alt } from "../alt";

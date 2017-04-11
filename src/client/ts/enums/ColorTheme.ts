@@ -1,7 +1,7 @@
 /**
  * ColorTheme
  *
- * Different color themes.
+ * Different color themes. Used for changing the color theme.
  */
 
 const enum ColorTheme {

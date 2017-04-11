@@ -1,3 +1,9 @@
+/**
+ * UserInput
+ *
+ * Component for the text form where the user will type into.
+ */
+
 import * as React from "react";
 
 import { ITypingModeStoreState, TypingModeStore } from "../../stores/TypingModeStore";

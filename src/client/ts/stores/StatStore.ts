@@ -1,7 +1,7 @@
 /**
  * StatStore
  *
- * Tracks correctly/incorrectly typed words/characters.
+ * Tracks correctly/incorrectly typed words/characters. These stats will be displayed for the user.
  */
 
 import { AbstractStoreModel, alt } from "../alt";

@@ -1,3 +1,9 @@
+/**
+ * AboutModal
+ *
+ * Modal for displaying information about the app and programmers.
+ */
+
 import * as React from "react";
 
 class AboutModal extends React.Component<any, any> {

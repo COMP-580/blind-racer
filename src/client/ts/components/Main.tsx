@@ -1,3 +1,9 @@
+/**
+ * Main
+ *
+ * Entrypoint component.
+ */
+
 import * as React from "react";
 
 import GameText from "./GameText/GameText";

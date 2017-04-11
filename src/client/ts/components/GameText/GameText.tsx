@@ -1,3 +1,9 @@
+/**
+ * GameText
+ *
+ * Container for holding the text that the user is going to type.
+ */
+
 import * as React from "react";
 
 import { GameTextStore, IGameTextStoreState } from "../../stores/GameTextStore";
