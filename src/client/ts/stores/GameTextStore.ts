@@ -1,3 +1,9 @@
+/**
+ * GameTextStore
+ *
+ * Handles the state of the game text.
+ */
+
 import { AbstractStoreModel, alt } from "../alt";
 
 import GameActions from "../actions/GameActions";

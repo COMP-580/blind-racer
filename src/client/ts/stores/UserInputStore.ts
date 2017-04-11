@@ -1,3 +1,9 @@
+/**
+ * UserInputStore
+ *
+ * Defines the state of the user input text box
+ */
+
 import { AbstractStoreModel, alt } from "../alt";
 
 import TypingActions from "../actions/TypingActions";
