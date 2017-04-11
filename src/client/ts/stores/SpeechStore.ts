@@ -2,7 +2,7 @@ import { AbstractStoreModel, alt } from "../alt";
 
 import SpeechActions from "../actions/SpeechActions";
 
-let speak: any = require("node-speak");
+declare let responsiveVoice: any;
 
 interface ISpeechStoreState {
   currentWord: string;
@@ -20,8 +20,7 @@ class AltSpeechStore extends AbstractStoreModel<ISpeechStoreState> implements IS
   }
 
   public onSayText(text: string) {
-    speak(text, {speed: 175});
-    console.log(text);
+    responsiveVoice.speak(text);
   }
 
 }
