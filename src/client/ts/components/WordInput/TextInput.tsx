@@ -20,7 +20,6 @@ class TextInput extends React.Component<any, any> {
 
   public compnentWillUnMount() {
     TypingModeStore.unlisten(this.changeMode);
-
   }
 
   public changeMode(state: ITypingModeStoreState) {

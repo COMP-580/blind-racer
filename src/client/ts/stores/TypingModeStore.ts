@@ -72,5 +72,6 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
   }
 
 }
+
 let TypingModeStore = alt.createStore(AltTypingModeStore, "TypingModeStore");
 export { ITypingModeStoreState, TypingModeStore }

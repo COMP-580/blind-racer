@@ -33,7 +33,7 @@ import "./stores/SoundStore";
 import "./stores/SpeechStore";
 import "./stores/StatStore";
 import "./stores/TimerStore";
-import "./stores/TypingModestore";
+import "./stores/TypingModeStore";
 import "./stores/UserInputStore";
 
 /**

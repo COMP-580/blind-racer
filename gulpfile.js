@@ -257,12 +257,12 @@ gulp.task("watch-client-ts", function() {
   let bundler = watchify(browserify(config.client.ts.src, {
     cache: {},
     packageCache: {},
-    debug: true
+    // debug: true
   })
   .plugin(tsify)
   .transform(babelify.configure({
     compact: false,
-    presets: ["es2015", "react"]
+    presets: ["react", "es2015"]
   })));
 
   bundler.on("update", function() {
