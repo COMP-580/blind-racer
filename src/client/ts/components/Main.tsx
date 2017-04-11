@@ -29,6 +29,7 @@ class Main extends React.Component<undefined, undefined> {
           <UserInput id="text-input" defaultValue="" />
           <UserStats />
           <VirtualKeyboard />
+          <NavBar />
         </div>
 
         <AboutModal />
