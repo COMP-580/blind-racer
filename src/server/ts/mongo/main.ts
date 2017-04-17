@@ -18,6 +18,7 @@ import * as Q from "q";
 let mongoHost = "mongodb://localhost/";
 let mongoDB = "blind-racer";
 mongoose.connect(mongoHost + mongoDB, (err) => {
+  console.log(mongoose.connection.readyState);
   if (err) {
     logger.error(err.stack);
   }
