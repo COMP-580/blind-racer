@@ -1,5 +1,12 @@
+/**
+ * TimerStore
+ *
+ * In charge of calculating a user's wpm.
+ */
+
 import { AbstractStoreModel, alt } from "../alt";
 
+import TimingActions from "../actions/TimingActions";
 import TypingActions from "../actions/TypingActions";
 
 // Declare global variables
@@ -33,25 +40,24 @@ class AltTimerStore extends AbstractStoreModel<ITimerStoreState> implements ITim
     this.updatesPerSecond = 10;
     this.timerInterval = null;
 
-    this.bindAction(TypingActions.typedWord, this.onTypedWord);
-    this.bindAction(TypingActions.startTyping, this.onStartTyping);
-    this.bindAction(TypingActions.updateTimer, this.onUpdateTimer);
-    this.bindAction(TypingActions.stopTyping, this.onStopTyping);
+    this.bindAction(TypingActions.wordSuccess, this.onWordSuccess);
+    this.bindAction(TimingActions.startTyping, this.onStartTyping);
+    this.bindAction(TimingActions.updateTimer, this.onUpdateTimer);
+    this.bindAction(TimingActions.stopTyping, this.onStopTyping);
   }
 
-  public onTypedWord(word: string) {
+  public onWordSuccess(word: string) {
     this.typedWords++;
   }
 
   public onStartTyping() {
-    // console.log("start typing");
     this.wpm = 0;
     this.typedWords = 0;
     this.elapsedTime = 0;
     this.startTime = window ? window.performance.now() : null;
 
     this.timerInterval = setInterval(() => {
-      TypingActions.updateTimer();
+      TimingActions.updateTimer();
     }, 1000 / this.updatesPerSecond);
   }
 
@@ -62,10 +68,10 @@ class AltTimerStore extends AbstractStoreModel<ITimerStoreState> implements ITim
   }
 
   public onStopTyping() {
-    // console.log("stop typing");
     clearTimeout(this.timerInterval);
   }
 
 }
-let TimerStore = alt.createStore(AltTimerStore);
+
+let TimerStore = alt.createStore(AltTimerStore, "TimerStore");
 export { ITimerStoreState, TimerStore }

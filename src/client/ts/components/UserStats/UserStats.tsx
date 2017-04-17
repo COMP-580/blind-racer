@@ -1,3 +1,9 @@
+/**
+ * UserStats
+ *
+ * Component for displaying user stats. Many of the fields are toggable so the user can hide distractions.
+ */
+
 import * as React from "react";
 
 import { ITimerStoreState, TimerStore } from "../../stores/TimerStore";

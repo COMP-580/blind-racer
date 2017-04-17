@@ -1,3 +1,9 @@
+/**
+ * SoundActions
+ *
+ * Actions related to producing sound on the client, such as loading and playings sounds.
+ */
+
 import { AbstractActions, alt } from "../alt";
 
 interface ISoundActions {

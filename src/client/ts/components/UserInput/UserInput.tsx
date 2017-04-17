@@ -1,8 +1,14 @@
+/**
+ * UserInput
+ *
+ * Component for the text form where the user will type into.
+ */
+
 import * as React from "react";
 
 import { ITypingModeStoreState, TypingModeStore } from "../../stores/TypingModeStore";
 
-class TextInput extends React.Component<any, any> {
+class UserInput extends React.Component<any, any> {
 
   constructor() {
     super();
@@ -20,7 +26,6 @@ class TextInput extends React.Component<any, any> {
 
   public compnentWillUnMount() {
     TypingModeStore.unlisten(this.changeMode);
-
   }
 
   public changeMode(state: ITypingModeStoreState) {
@@ -43,4 +48,4 @@ class TextInput extends React.Component<any, any> {
   }
 }
 
-export default TextInput;
+export default UserInput;

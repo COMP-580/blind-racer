@@ -102,6 +102,11 @@ gulp.task("clean", function(done) {
   });
 });
 
+// Apply production
+gulp.task('apply-prod-environment', function() {
+  process.env.NODE_ENV = 'production';
+});
+
 // Compile client scss
 gulp.task("compile-scss", function(done) {
   gulp.src(config.client.scss.src)
@@ -262,7 +267,7 @@ gulp.task("watch-client-ts", function() {
   .plugin(tsify)
   .transform(babelify.configure({
     compact: false,
-    presets: ["es2015", "react"]
+    presets: ["react", "es2015"]
   })));
 
   bundler.on("update", function() {
@@ -272,7 +277,7 @@ gulp.task("watch-client-ts", function() {
   return bundle(bundler);
 });
 
-gulp.task("minify-client-ts", function() {
+gulp.task("minify-client-ts", ["apply-prod-environment"], function() {
   return browserify(config.client.ts.src, {
     cache: {},
     packageCache: {},

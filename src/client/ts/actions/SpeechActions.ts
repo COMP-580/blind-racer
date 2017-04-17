@@ -1,3 +1,9 @@
+/**
+ * SpeechActions
+ *
+ * Actions related to speech, such as synthesizing speech.
+ */
+
 import { AbstractActions, alt } from "../alt";
 
 interface ISpeechActions {

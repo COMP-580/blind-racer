@@ -1,25 +1,31 @@
+/**
+ * GameText
+ *
+ * Container for holding the text that the user is going to type.
+ */
+
 import * as React from "react";
 
-import { BoxStore, IBoxStoreState } from "../stores/BoxStore";
+import { GameTextStore, IGameTextStoreState } from "../../stores/GameTextStore";
 
-class ViewBox extends React.Component<any, any> {
+class GameText extends React.Component<any, any> {
 
   constructor() {
     super();
-    this.state = BoxStore.getState();
+    this.state = GameTextStore.getState();
     this.onChange = this.onChange.bind(this);
   }
 
   public componentDidMount() {
-    BoxStore.listen(this.onChange);
+    GameTextStore.listen(this.onChange);
   }
 
-  public onChange(state: IBoxStoreState) {
+  public onChange(state: IGameTextStoreState) {
     this.setState(state);
   }
 
   public componentWillUnMount() {
-    BoxStore.unlisten(this.onChange);
+    GameTextStore.unlisten(this.onChange);
   }
 
   public render() {
@@ -44,4 +50,4 @@ class ViewBox extends React.Component<any, any> {
   }
 }
 
-export default ViewBox;
+export default GameText;

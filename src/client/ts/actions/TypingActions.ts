@@ -1,26 +1,31 @@
+/**
+ * TypingActions
+ *
+ * Actions related to when the user is typing in the user input box.
+ */
+
 import { AbstractActions, alt } from "../alt";
 
 interface ITypingActions {
-  typedWord(word: string): void;
-  startTyping(): void;
-  updateTimer(): void;
-  stopTyping(): void;
   typeChar(char: string): void;
+  charSuccess(char: string): void;
+  charFail(char: string, expected: string): void;
+
   typeWord(word: string): void;
-  changeMode(mode: number): void;
+  wordSuccess(word: string): void;
+  wordFail(word: string, expected: string): void;
 }
 
 class TypingActions extends AbstractActions {
   constructor(config: AltJS.Alt) {
     super(config);
     this.generateActions(
-      "typedWord",
-      "startTyping",
-      "updateTimer",
-      "stopTyping",
       "typeChar",
+      "charSuccess",
+      "charFail",
       "typeWord",
-      "changeMode",
+      "wordSuccess",
+      "wordFail",
     );
   }
 }
