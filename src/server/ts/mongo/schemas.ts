@@ -11,13 +11,20 @@ let ObjectId = Schema.Types.ObjectId;
 /**
  * Login represents a separate user/login that can be used
  */
-let Login = new Schema({
+// let Login = new Schema({
+//   username: { type: String, minLength: 4, maxLength: 20 },
+//   password: { type: String, minLength: 4, maxLength: 50 },
+//   lastLogin: { type: Number, default: Date.now() },
+//   playerId: { type: Schema.Types.ObjectId },
+//   token: { type: String, default: "" },
+// });
+
+let Leaderboard = new Schema({
   username: { type: String, minLength: 4, maxLength: 20 },
-  password: { type: String, minLength: 4, maxLength: 50 },
-  lastLogin: { type: Number, default: Date.now() },
-  playerId: { type: Schema.Types.ObjectId },
-  token: { type: String, default: "" },
+  score: {type: Number},
+  timestamp: {type: Number},
 });
 
 // Expose schemas through mongoose
-mongoose.model("Login", Login);
+mongoose.model("Leaderboard", Leaderboard);
+
