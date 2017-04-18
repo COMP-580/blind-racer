@@ -16,6 +16,7 @@ class SettingsModal extends React.Component<any, any> {
     return (
       <div>
         <p>SettingsModal Test</p>
+        <span className="fa fa-car"></span>
       </div>
     );
   }
