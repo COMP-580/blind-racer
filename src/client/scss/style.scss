@@ -2,6 +2,27 @@
 @import "../libraries/font-awesome/css/font-awesome";
 // @import url("//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
 
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.row-same-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.force-column-height {
+  display: flex;
+  flex-direction: column;
+}
+
 .word-finished{
   background-color: limegreen;
 }
