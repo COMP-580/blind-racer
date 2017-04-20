@@ -5,6 +5,7 @@
  */
 
 import * as React from "react";
+import SettingsContent from "./SettingsContent";
 
 class SettingsModal extends React.Component<any, any> {
 
@@ -14,9 +15,10 @@ class SettingsModal extends React.Component<any, any> {
 
   public render() {
     return (
-      <div>
-        <p>SettingsModal Test</p>
-        <span className="fa fa-car"></span>
+      <div id="settings-modal" className="modal fade" tabIndex={-1} role="dialog">
+        <div className="modal-dialog" role="document">
+          <SettingsContent />
+        </div>
       </div>
     );
   }

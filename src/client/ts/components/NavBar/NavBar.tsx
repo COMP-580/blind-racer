@@ -6,6 +6,10 @@
 
 import * as React from "react";
 
+import AboutButton from "../Modals/About/AboutButton";
+import HelpButton from "../Modals/Help/HelpButton";
+import SettingsButton from "../Modals/Settings/SettingsButton";
+
 class NavBar extends React.Component<any, any> {
 
   constructor() {
@@ -15,7 +19,12 @@ class NavBar extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        <p>Test NavBar</p>
+        <ul className="sidebar-nav">
+          <li><AboutButton /></li>
+          <li><HelpButton /></li>
+          <li><SettingsButton /></li>
+        </ul>
+
       </div>
     );
   }

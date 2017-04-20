@@ -15,7 +15,7 @@ class Title extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        <h4>Title</h4>
+        <h4 className="text-center">TypeZone</h4>
       </div>
     );
   }

@@ -38,12 +38,14 @@ class AltModalStore extends AbstractStoreModel<IModalStoreState> implements IMod
   public openAboutModal() {
     let aboutId = "about-modal";
     let aboutModal = $("#" + aboutId);
+    aboutModal.modal("show");
     this.currentModal = aboutId;
   }
 
   public openHelpModal() {
     let helpId = "help-modal";
     let helpModal = $("#" + helpId);
+    helpModal.modal("show");
     this.currentModal = helpId;
 
   }
@@ -51,6 +53,7 @@ class AltModalStore extends AbstractStoreModel<IModalStoreState> implements IMod
   public openSettingsModal() {
     let settingsId = "settings-modal";
     let settingsModal = $("#" + settingsId);
+    settingsModal.modal("show");
     this.currentModal = settingsId;
   }
 

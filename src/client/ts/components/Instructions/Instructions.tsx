@@ -1,12 +1,12 @@
 /**
- * Leaderboard
+ * Instructions
  *
- * Component for displaying a simple table of leaderboard scores.
+ * Component for displaying instructions under the navbar.
  */
 
 import * as React from "react";
 
-class Leaderboard extends React.Component<any, any> {
+class Instructions extends React.Component<any, any> {
 
   constructor() {
     super();
@@ -15,11 +15,11 @@ class Leaderboard extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        <p>Leaderboard Test</p>
+        <p>Instructions Test</p>
         <span className="fa fa-car"></span>
       </div>
     );
   }
 }
 
-export default Leaderboard;
+export default Instructions;
