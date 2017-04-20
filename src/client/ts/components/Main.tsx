@@ -7,6 +7,7 @@
 import * as React from "react";
 
 import GameText from "./GameText/GameText";
+import Instructions from "./Instructions/Instructions";
 import Leaderboard from "./Leaderboard/Leaderboard";
 import NavBar from "./NavBar/NavBar";
 import Title from "./Title/Title";
@@ -15,9 +16,11 @@ import UserStats from "./UserStats/UserStats";
 import VirtualKeyboard from "./VirtualKeyboard/VirtualKeyboard";
 
 // Include modals at the top level component
-import AboutModal from "./Modals/AboutModal";
-import HelpModal from "./Modals/HelpModal";
+import AboutModal from "./Modals/About/AboutModal";
+import HelpModal from "./Modals/Help/HelpModal";
 import SettingsModal from "./Modals/Settings/SettingsModal";
+
+import SettingsContent from "./Modals/Settings/SettingsContent";
 
 class Main extends React.Component<undefined, undefined> {
   public render() {
@@ -34,6 +37,7 @@ class Main extends React.Component<undefined, undefined> {
             <div className="row row-same-height">
               <div className="col-xs-3 force-column-height">
                 <NavBar />
+                <Instructions />
               </div>
 
               <div className="col-xs-6 force-column-height">
@@ -57,6 +61,8 @@ class Main extends React.Component<undefined, undefined> {
           <AboutModal />
           <HelpModal />
           <SettingsModal />
+
+          <SettingsContent />
 
       </div>
     );
