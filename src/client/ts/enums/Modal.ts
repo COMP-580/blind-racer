@@ -8,6 +8,7 @@ const enum Modal {
   ABOUT,
   HELP,
   SETTINGS,
+  SUBMIT_SCORE,
 }
 
 export { Modal };

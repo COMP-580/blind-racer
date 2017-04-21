@@ -6,6 +6,7 @@
 
 import { AbstractStoreModel, alt } from "../alt";
 
+import GameActions from "../actions/GameActions";
 import TypingActions from "../actions/TypingActions";
 
 interface IUserInputStoreState {
@@ -20,8 +21,19 @@ class AltUserInputStore extends AbstractStoreModel<IUserInputStoreState> impleme
   constructor() {
     super();
     this.currentWord = "";
+    this.bindAction(GameActions.startGame, this.onStartGame);
+    this.bindAction(GameActions.endGame, this.onEndGame);
     this.bindAction(TypingActions.typeChar, this.onTypeChar);
     this.bindAction(TypingActions.typeWord, this.onTypeWord);
+  }
+
+  public onStartGame() {
+    $("#text-input").prop("disabled", false);
+    $("#text-input").focus();
+  }
+
+  public onEndGame() {
+    $("#text-input").prop("disabled", true);
   }
 
   public onTypeChar(c: string) {

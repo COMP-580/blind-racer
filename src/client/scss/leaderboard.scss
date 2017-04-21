@@ -1,0 +1,49 @@
+#leaderboard {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+#lb-overlay {
+  // float: left;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color:rgba(128,128,128,0.5);;
+  display: none;
+  overflow: auto;
+}
+
+#lb-container {
+  float: left;
+  width: 100%;
+  height: 100%;
+  // position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  overflow: auto;
+}
+
+tr {
+  padding: 0;
+  height: 5%;
+  font-size: x-small;
+  margin: 0 0 0 0;
+}
+
+.lb-table {
+  margin-bottom: 0;
+}
+
+.lb-table-row {
+  padding: 0;
+}
+
+.lb-table-td {
+  padding: 0 !important;
+  border: 0 !important;
+}
