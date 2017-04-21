@@ -27,6 +27,7 @@ import SoundActions from "./actions/SoundActions";
 import SpeechActions from "./actions/SpeechActions";
 import TimingActions from "./actions/TimingActions";
 import TypingActions from  "./actions/TypingActions";
+import VirtualKeyboardActions from "./actions/VirtualKeyboardActions";
 
 // Stores
 import "./stores/GameTextStore";
@@ -38,6 +39,7 @@ import "./stores/StatStore";
 import "./stores/TimerStore";
 import "./stores/TypingModeStore";
 import "./stores/UserInputStore";
+import "./stores/VirtualKeyboardStore";
 
 // Enums
 import { ColorTheme, toColorTheme } from "./enums/ColorTheme";

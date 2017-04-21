@@ -13,7 +13,8 @@ import NavBar from "./NavBar/NavBar";
 import Title from "./Title/Title";
 import UserInput from "./UserInput/UserInput";
 import UserStats from "./UserStats/UserStats";
-import VirtualKeyboard from "./VirtualKeyboard/VirtualKeyboard";
+import KeyboardCollapse from "./VirtualKeyboard/KeyboardCollapse";
+import ToggleKeyboard from "./VirtualKeyboard/ToggleKeyboard";
 
 // Include modals at the top level component
 import AboutModal from "./Modals/About/AboutModal";
@@ -51,7 +52,10 @@ class Main extends React.Component<undefined, undefined> {
               </div>
 
               <div className="col-xs-12">
-                <VirtualKeyboard />
+                <div className="text-center">
+                  <ToggleKeyboard />
+                </div>
+                <KeyboardCollapse />
               </div>
             </div>
           </div>
