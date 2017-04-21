@@ -1,0 +1,83 @@
+$key-unit: (100/15)*1%;
+$keyboard-border: #880088;
+
+.keyboard {
+  background: #666666;
+  border: 1px solid $keyboard-border;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.keyboard-collapse {
+  box-sizing: border-box;
+}
+
+.keyboard-row {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.key {
+  float: left;
+  margin: 0 0 0 0;
+  height: 0;
+  padding-bottom: $key-unit;
+  text-align: center;
+  background: #FFFFFF;
+  border: 1px solid $keyboard-border;
+  position: relative;
+}
+
+.key:hover {
+  color: #FFFFFF;
+  background: rgba(255,255,255,0.2);
+}
+
+.key-pressed {
+  background: #880088;
+}
+
+
+.key > span {
+  margin: 0;
+  position: absolute;
+  padding: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.key-width-1 {
+  width: $key-unit;
+}
+
+.key-width-1\.25 {
+  width: $key-unit * 1.25;
+}
+
+.key-width-1\.5 {
+  width: $key-unit * 1.5;
+}
+
+.key-width-1\.75 {
+  width: $key-unit * 1.75;
+}
+
+.key-width-2 {
+  width: $key-unit * 2;
+}
+
+.key-width-2\.25 {
+  width: $key-unit * 2.25;
+}
+
+.key-width-2\.75 {
+  width: $key-unit * 2.75;
+}
+
+.key-width-6\.25 {
+  width: $key-unit * 6.25;
+}
