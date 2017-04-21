@@ -32,6 +32,8 @@ class AltModalStore extends AbstractStoreModel<IModalStoreState> implements IMod
       this.openHelpModal();
     } else if (modal === Modal.SETTINGS) {
       this.openSettingsModal();
+    } else if (modal === Modal.SUBMIT_SCORE) {
+      this.openSubmitScoreModal();
     }
   }
 
@@ -55,6 +57,13 @@ class AltModalStore extends AbstractStoreModel<IModalStoreState> implements IMod
     let settingsModal = $("#" + settingsId);
     settingsModal.modal("show");
     this.currentModal = settingsId;
+  }
+
+  public openSubmitScoreModal() {
+    let submitScoreId = "submit-score-modal";
+    let submitScoreModal = $("#" + submitScoreId);
+    submitScoreModal.modal("show");
+    this.currentModal = submitScoreId;
   }
 
 }

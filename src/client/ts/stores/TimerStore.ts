@@ -6,6 +6,7 @@
 
 import { AbstractStoreModel, alt } from "../alt";
 
+import GameActions from "../actions/GameActions";
 import TimingActions from "../actions/TimingActions";
 import TypingActions from "../actions/TypingActions";
 
@@ -55,6 +56,10 @@ class AltTimerStore extends AbstractStoreModel<ITimerStoreState> implements ITim
     this.typedWords = 0;
     this.elapsedTime = 0;
     this.startTime = window ? window.performance.now() : null;
+
+    if (this.timerInterval) {
+      clearTimeout(this.timerInterval);
+    }
 
     this.timerInterval = setInterval(() => {
       TimingActions.updateTimer();

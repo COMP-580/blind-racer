@@ -4,6 +4,7 @@
 
 @import "./sidebar-nav";
 @import "./keyboard";
+@import "./leaderboard";
 
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
@@ -13,18 +14,18 @@
   align-items: center;
 }
 
-.row-same-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-}
+// .row-same-height {
+//   display: -webkit-box;
+//   display: -webkit-flex;
+//   display: -ms-flexbox;
+//   display: flex;
+//   flex-wrap: wrap;
+// }
 
-.force-column-height {
-  display: flex;
-  flex-direction: column;
-}
+// .force-column-height {
+//   display: flex;
+//   flex-direction: column;
+// }
 
 .word-finished{
   background-color: limegreen;
