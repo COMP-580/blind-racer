@@ -6,9 +6,11 @@
 
 import * as React from "react";
 
+import StartButton from "./Game/StartButton";
 import GameText from "./GameText/GameText";
 import Instructions from "./Instructions/Instructions";
 import Leaderboard from "./Leaderboard/Leaderboard";
+import RefreshLB from "./Leaderboard/RefreshLB";
 import NavBar from "./NavBar/NavBar";
 import Title from "./Title/Title";
 import UserInput from "./UserInput/UserInput";
@@ -18,9 +20,9 @@ import VirtualKeyboard from "./VirtualKeyboard/VirtualKeyboard";
 // Include modals at the top level component
 import AboutModal from "./Modals/About/AboutModal";
 import HelpModal from "./Modals/Help/HelpModal";
-import SettingsModal from "./Modals/Settings/SettingsModal";
-
 import SettingsContent from "./Modals/Settings/SettingsContent";
+import SettingsModal from "./Modals/Settings/SettingsModal";
+import SubmitScoreModal from "./Modals/SubmitScore/SubmitScoreModal";
 
 class Main extends React.Component<undefined, undefined> {
   public render() {
@@ -29,7 +31,7 @@ class Main extends React.Component<undefined, undefined> {
 
         <div className="row vertical-center">
 
-          <div className="col-xs-offset-2 col-xs-8">
+          <div className="col-xs-offset-1 col-xs-10">
             <div className="row">
               <Title />
             </div>
@@ -46,11 +48,13 @@ class Main extends React.Component<undefined, undefined> {
                 <UserStats />
               </div>
 
-              <div className="col-xs-3 force-clumn-height">
+              <div className="col-xs-3 force-column-height">
+                <RefreshLB />
                 <Leaderboard />
               </div>
 
               <div className="col-xs-12">
+                <StartButton />
                 <VirtualKeyboard />
               </div>
             </div>
@@ -61,6 +65,7 @@ class Main extends React.Component<undefined, undefined> {
           <AboutModal />
           <HelpModal />
           <SettingsModal />
+          <SubmitScoreModal />
 
           <SettingsContent />
 

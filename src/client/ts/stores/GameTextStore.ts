@@ -34,8 +34,14 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     this.currentWord = this.unfinishedWords[0];
     this.unfinishedWords.shift();
 
+    this.bindAction(GameActions.startGame, this.onStartGame);
     this.bindAction(GameActions.fetchGameText, this.onFetchGameText);
     this.bindAction(TypingActions.typeWord, this.onTypeWord);
+  }
+
+  public onStartGame() {
+    this.onFetchGameText();
+    (SpeechActions as any).sayText.defer(this.currentWord);
   }
 
   public onFetchGameText() {
@@ -52,7 +58,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   }
 
   public onTypeWord(word: string) {
-    if (word === this.currentWord) {
+    if (word === this.currentWord) {  // Typed the word correctly
       this.finishedWords.push(word);
       this.currentWord = this.unfinishedWords[0];
       this.unfinishedWords.shift();
@@ -61,12 +67,15 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
       }
       (<any> SoundActions).playSound.defer("ding");
       (<any> TypingActions).wordSuccess.defer(word);
-    } else {
+    } else {    // Typed the word incorrectly
       (<any> SoundActions).playSound.defer("inception-horn");
     }
+
     if (!this.currentWord) {
+      this.currentWord = "";
       (<any> SoundActions).playSound.defer("party-horn");
       (<any> TimingActions).stopTyping.defer();
+      (<any> GameActions).endGame.defer();
     }
   }
 

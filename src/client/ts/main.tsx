@@ -30,6 +30,7 @@ import TypingActions from  "./actions/TypingActions";
 
 // Stores
 import "./stores/GameTextStore";
+import "./stores/LeaderboardStore";
 import "./stores/ModalStore";
 import "./stores/SettingsStore";
 import "./stores/SoundStore";
@@ -81,7 +82,7 @@ $(document).ready(() => {
   SoundActions.loadSound({name: "ding",           path: "assets/sounds/ding.mp3",           volume: 0.1});
   SoundActions.loadSound({name: "party-horn",     path: "assets/sounds/party-horn.mp3",     volume: 0.5});
 
-  // Test
-  SoundActions.playSound("ding");
-  TimingActions.startTyping();
+  // // Test
+  // SoundActions.playSound("ding");
+  // TimingActions.startTyping();
 });

@@ -8,7 +8,11 @@ import { AbstractActions, alt } from "../alt";
 
 interface ILeaderboardActions {
   refreshLeaderboard(): void;
-  submitLeaderboard(username: string, score: number): void;
+  updateLeaderboard(scores: {
+                      daily: Array<{username: string, score: number}>,
+                      hourly: Array<{username: string, score: number}>,
+                    }): void;
+  submitLeaderboard(score: {username: string, score: number}): void;
 }
 
 class LeaderboardActions extends AbstractActions {
@@ -16,6 +20,7 @@ class LeaderboardActions extends AbstractActions {
     super(config);
     this.generateActions(
       "refreshLeaderboard",
+      "updateLeaderboard",
       "submitLeaderboard",
     );
   }
