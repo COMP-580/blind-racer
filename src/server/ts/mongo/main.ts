@@ -4,6 +4,7 @@
 
 import * as mongoose from "mongoose";
 import { logger } from "../util/logger";
+import "./wipe";
 
 logger.debug("Setting up mongoose...");
 

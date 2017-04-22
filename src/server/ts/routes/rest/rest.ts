@@ -13,7 +13,8 @@ import { logger } from "../../util/logger";
 
 // Import necessary schemas
 import * as mongoose from "mongoose";
-let Leaderboard = mongoose.model("Leaderboard");
+let DailyLeaderboard = mongoose.model("DailyLeaderboard");
+let HourlyLeaderboard = mongoose.model("HourlyLeaderboard");
 
 // Main express REST router
 let router = express.Router();
@@ -32,17 +33,30 @@ router.post("/leaderboard", (req, res, next) => {
     return res.status(409).send(e);
   } else {
 
-    let lb: any = new Leaderboard();
-    lb.username = username;
-    lb.score = score;
-    lb.timestamp = timestamp;
-    lb.save((err: any) => {
+    let dlb: any = new DailyLeaderboard();
+    dlb.username = username;
+    dlb.score = score;
+    dlb.timestamp = timestamp;
+    dlb.save((err: any) => {
       if (err) {
         let e = new RestError("Couldn't save");
         return res.status(500).send(e);
       } else {
-        return res.send({
-          success: true,
+
+        // Succesfully saved
+        let hlb: any = new HourlyLeaderboard();
+        hlb.username = username;
+        hlb.score = score;
+        hlb.timestamp = timestamp;
+        hlb.save((err2: any) => {
+          if (err2) {
+            let e = new RestError("Couldn't save");
+            return res.status(500).send(e);
+          } else {
+            return res.send({
+              success: true,
+            });
+          }
         });
       }
     });
@@ -52,12 +66,19 @@ router.post("/leaderboard", (req, res, next) => {
 // GET /leaderboard
 router.get("/leaderboard", (req, res, next) => {
   let count = req.query.count || 10;
-  let query = Leaderboard.find()
+
+  let dquery = DailyLeaderboard.find()
     .limit(parseInt(count, 10))
     .sort({score: -1});
 
-  querydb(res, query, (leaderboard: any) => {
-    res.send({ daily: leaderboard, hourly: leaderboard });
+  let hquery = HourlyLeaderboard.find()
+    .limit(parseInt(count, 10))
+    .sort({score: -1});
+
+  querydb(res, dquery, (dleaderboard: any) => {
+    querydb(res, hquery, (hleaderboard: any) => {
+      res.send({ daily: dleaderboard, hourly: hleaderboard });
+    });
   });
 });
 
@@ -66,7 +87,7 @@ function querydb(res: any, query: any, success: any) {
     res.status(500).send({error: {message: "database down"}});
     mongoose.connect("mongodb://localhost/blind-racer", (err) => {
       if (err) {
-        console.log(err.stack);
+        logger.error(err.stack);
       }
     });
   } else {

@@ -88,7 +88,6 @@ class AltLeaderboardStore extends AbstractStoreModel<ILeaderboardStoreState> imp
     let comparator = (a: any, b: any) => {
       return b.score - a.score;
     };
-    console.log(scores);
 
     scores.daily.sort(comparator);
     scores.hourly.sort(comparator);
@@ -112,7 +111,6 @@ class AltLeaderboardStore extends AbstractStoreModel<ILeaderboardStoreState> imp
     }, (msg?: string) => {
       LeaderboardActions.refreshLeaderboard();
     });
-    console.log("submitting the leaderboard", score);
   }
 }
 
