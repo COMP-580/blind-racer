@@ -21,10 +21,9 @@ let ObjectId = Schema.Types.ObjectId;
 
 let Leaderboard = new Schema({
   username: { type: String, minLength: 4, maxLength: 20 },
-  score: {type: Number},
-  timestamp: {type: Number},
-});
+  score: { type: Number },
+  timestamp: { type: Number },
+}, { bufferCommands: false });
 
 // Expose schemas through mongoose
 mongoose.model("Leaderboard", Leaderboard);
-

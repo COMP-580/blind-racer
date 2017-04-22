@@ -9,6 +9,8 @@ import * as path from "path";
 import Util from "../../util/util";
 import { RestError } from "./error";
 
+import { logger } from "../../util/logger";
+
 // Import necessary schemas
 import * as mongoose from "mongoose";
 let Leaderboard = mongoose.model("Leaderboard");
@@ -18,6 +20,7 @@ let router = express.Router();
 
 let salt = bcrypt.genSaltSync(5);
 
+// POST /leaderboard
 router.post("/leaderboard", (req, res, next) => {
   let username = req.body.username;
   let score = req.body.score;
@@ -27,53 +30,56 @@ router.post("/leaderboard", (req, res, next) => {
   if (!username || !score) {
     let e = new RestError("No username or score");
     return res.status(409).send(e);
-  }else{
-    var lb:any = new Leaderboard();
+  } else {
+    let lb: any = new Leaderboard();
     lb.username = username;
     lb.score = score;
-    lb.timestampe = timestamp;
-    lb.save(function (err:any){
-      if (err){
+    lb.timestamp = timestamp;
+    lb.save((err: any) => {
+      if (err) {
         let e = new RestError("Couldn't save");
         return res.status(500).send(e);
-      }else{
+      } else {
         return res.send({
-          success:true
+          success: true,
         });
       }
-    })
+    });
   }
 });
 
-router.get("/leaderboard", (req,res,next)=> {
-  var count = req.query.count||10;
-  var query = Leaderboard.find()
-    .limit(parseInt(count))
-    .sort({"score": -1})
-  querydb(res,query,function(leaderboard:any){
+// GET /leaderboard
+router.get("/leaderboard", (req, res, next) => {
+  let count = req.query.count || 10;
+  let query = Leaderboard.find()
+    .limit(parseInt(count, 10))
+    .sort({score: -1});
+
+  querydb(res, query, (leaderboard: any) => {
+    logger.debug("nice query");
+    logger.debug(leaderboard);
     res.send(leaderboard);
-  })
+  });
 });
 
-
-var querydb=function(res:any,query:any,success:any){
-  if (mongoose.connection.readyState==0){
-    res.send({erro: {message: 'database down'}});
-    mongoose.connect('mongodb://localhost/blind-racer',function(err){
-      if(err){
-        console.log(err.stack);
-      }
-    });
-  }else{
-    query.exec(function(err:any,queryRes:any){
-      if (err){
-        console.log(err);
-        res.status(500).send({error: {message: 'internal server error'}});
-      }else{
+function querydb(res: any, query: any, success: any) {
+  // if (mongoose.connection.readyState === 0) {
+  //   res.status(500).send({error: {message: "database down"}});
+  //   mongoose.connect("mongodb://localhost/blind-racer", (err) => {
+  //     if (err) {
+  //       console.log(err.stack);
+  //     }
+  //   });
+  // } else {
+    query.exec((err: any, queryRes: any) => {
+      if (err) {
+        logger.error(err);
+        res.status(500).send({error: {message: "internal server error"}});
+      } else {
         success(queryRes);
       }
-    })
-  }
+    });
+  // }
 }
 
 export default router;
