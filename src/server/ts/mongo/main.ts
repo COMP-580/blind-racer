@@ -4,6 +4,7 @@
 
 import * as mongoose from "mongoose";
 import { logger } from "../util/logger";
+import "./wipe";
 
 logger.debug("Setting up mongoose...");
 
@@ -11,14 +12,16 @@ logger.debug("Setting up mongoose...");
 import "./schemas";
 
 // Set the promise library
-import * as Q from "q";
-(<any> mongoose).Promise = Q;
+import * as bluebird from "bluebird";
+(<any> mongoose).Promise = bluebird;
 
 // Start up the mongoose connection
 let mongoHost = "mongodb://localhost/";
-let mongoDB = "blind-racer";
+let mongoDB = "type-zone";
 mongoose.connect(mongoHost + mongoDB, (err) => {
   if (err) {
     logger.error(err.stack);
+  } else {
+    logger.debug("Mongoose connected...");
   }
 });

@@ -67,6 +67,9 @@ ReactDOM.render(
  */
 $(document).ready(() => {
 
+  // Fetch leaderboard
+  LeaderboardActions.refreshLeaderboard();
+
   // Initialize so the next calls are faster
   SpeechActions.sayText("");
 
