@@ -11,25 +11,16 @@ logger.debug("Setting up mongoose...");
 import "./schemas";
 
 // Set the promise library
-import * as Q from "q";
-(<any> mongoose).Promise = Q;
+import * as bluebird from "bluebird";
+(<any> mongoose).Promise = bluebird;
 
 // Start up the mongoose connection
 let mongoHost = "mongodb://localhost/";
 let mongoDB = "type-zone";
-mongoose.connect(mongoHost + mongoDB);
-
-mongoose.connection.on('connected', function () {
-    (<any> mongoose).connection.db.collectionNames(function (err: any, names: any) {
-        if (err) console.log(err);
-        else console.log(names);
-    });
-})
-
-console.log(mongoose.connection.readyState);
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log("connected");
+mongoose.connect(mongoHost + mongoDB, (err) => {
+  if (err) {
+    logger.error(err.stack);
+  } else {
+    logger.debug("Mongoose connected...");
+  }
 });
-

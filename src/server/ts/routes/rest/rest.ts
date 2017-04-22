@@ -31,6 +31,7 @@ router.post("/leaderboard", (req, res, next) => {
     let e = new RestError("No username or score");
     return res.status(409).send(e);
   } else {
+
     let lb: any = new Leaderboard();
     lb.username = username;
     lb.score = score;
@@ -56,21 +57,19 @@ router.get("/leaderboard", (req, res, next) => {
     .sort({score: -1});
 
   querydb(res, query, (leaderboard: any) => {
-    logger.debug("nice query");
-    logger.debug(leaderboard);
-    res.send(leaderboard);
+    res.send({ daily: leaderboard, hourly: leaderboard });
   });
 });
 
 function querydb(res: any, query: any, success: any) {
-  // if (mongoose.connection.readyState === 0) {
-  //   res.status(500).send({error: {message: "database down"}});
-  //   mongoose.connect("mongodb://localhost/blind-racer", (err) => {
-  //     if (err) {
-  //       console.log(err.stack);
-  //     }
-  //   });
-  // } else {
+  if (mongoose.connection.readyState === 0) {
+    res.status(500).send({error: {message: "database down"}});
+    mongoose.connect("mongodb://localhost/blind-racer", (err) => {
+      if (err) {
+        console.log(err.stack);
+      }
+    });
+  } else {
     query.exec((err: any, queryRes: any) => {
       if (err) {
         logger.error(err);
@@ -79,7 +78,7 @@ function querydb(res: any, query: any, success: any) {
         success(queryRes);
       }
     });
-  // }
+  }
 }
 
 export default router;

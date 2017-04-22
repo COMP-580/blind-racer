@@ -8,7 +8,7 @@ import { AbstractActions, alt } from "../alt";
 
 interface IGameActions {
   fetchGameText(): void;
-  startGame(): void;
+  startGame(stats?: any): void;
   endGame(): void;
 }
 

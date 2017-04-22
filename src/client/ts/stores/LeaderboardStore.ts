@@ -14,6 +14,8 @@ import { Modal } from "../enums/Modal";
 
 import RestClient from "../util/RestClient";
 
+import { ITimerStoreState, TimerStore } from "./TimerStore";
+
 interface ILeaderboardStoreState {
   hourlyScores: Array<{username: string, score: number}>;
   dailyScores: Array<{username: string, score: number}>;
@@ -46,7 +48,10 @@ class AltLeaderboardStore extends AbstractStoreModel<ILeaderboardStoreState> imp
   public onEndGame() {
 
     // Check if it's a top score...
-    (<any> ModalActions).openModal.defer(Modal.SUBMIT_SCORE);
+    let score = (<ITimerStoreState> TimerStore.getState()).wpm;
+    if (score > this.hourlyScores[this.hourlyScores.length - 1].score) {
+      (<any> ModalActions).openModal.defer(Modal.SUBMIT_SCORE);
+    }
   }
 
   // Called when refreshing the leaderboard. This should put it in a loading state.
@@ -59,34 +64,11 @@ class AltLeaderboardStore extends AbstractStoreModel<ILeaderboardStoreState> imp
     $("#refresh-lb-fa").addClass("fa-spin");
     $("#refresh-lb-btn").prop("disabled", true);
 
-    // Start testing purposes
-    function randomstring(L: any) {
-        let s = "";
-        let randomchar = () => {
-            let n = Math.floor(Math.random() * 62);
-            if (n < 10) { return n; } // 1-10
-            if (n < 36) { return String.fromCharCode(n + 55); } // A-Z
-            return String.fromCharCode(n + 61); // a-z
-        };
-        while (s.length < L) { s += randomchar(); };
-        return s;
-    }
-
-    setTimeout(() => {
-      let scores = { daily: Array(), hourly: Array() };
-      for (let i = 0; i < 10; i++) {
-        scores.hourly.push({
-          score: Math.floor((Math.random() * 100)),
-          username: randomstring(5),
-        });
-        scores.daily.push({
-          score: Math.floor((Math.random() * 100)),
-          username: randomstring(5),
-        });
-      }
-      LeaderboardActions.updateLeaderboard(scores);
-    }, 1000);
-    // End testing purposes
+    RestClient.get("/api/v1/leaderboard", (data: any, status: any) => {
+      LeaderboardActions.updateLeaderboard(data);
+    }, (msg?: string) => {
+      LeaderboardActions.updateLeaderboard({daily: this.dailyScores, hourly: this.hourlyScores});
+    });
 
   }
 
@@ -106,6 +88,7 @@ class AltLeaderboardStore extends AbstractStoreModel<ILeaderboardStoreState> imp
     let comparator = (a: any, b: any) => {
       return b.score - a.score;
     };
+    console.log(scores);
 
     scores.daily.sort(comparator);
     scores.hourly.sort(comparator);
@@ -113,9 +96,22 @@ class AltLeaderboardStore extends AbstractStoreModel<ILeaderboardStoreState> imp
     this.dailyScores = scores.daily;
     this.hourlyScores = scores.hourly;
 
+    for (let i = this.dailyScores.length; i < 10; i++) {
+      this.dailyScores.push({username: "-", score: 0});
+    }
+
+    for (let i = this.hourlyScores.length; i < 10; i++) {
+      this.hourlyScores.push({username: "-", score: 0});
+    }
+
   }
 
   public onSubmitLeaderboard(score: {username: string, wpm: number}) {
+    RestClient.postMessage("/api/v1/leaderboard", score, (data: any, status: any) => {
+      LeaderboardActions.refreshLeaderboard();
+    }, (msg?: string) => {
+      LeaderboardActions.refreshLeaderboard();
+    });
     console.log("submitting the leaderboard", score);
   }
 }

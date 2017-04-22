@@ -23,6 +23,8 @@ let Leaderboard = new Schema({
   username: { type: String, minLength: 4, maxLength: 20 },
   score: { type: Number },
   timestamp: { type: Number },
+  __v: { type: Number, select: false },
+  id: { type: Schema.Types.ObjectId, select: false},
 }, { bufferCommands: false });
 
 // Expose schemas through mongoose
