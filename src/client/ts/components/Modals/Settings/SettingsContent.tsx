@@ -8,6 +8,7 @@ import * as React from "react";
 
 import ColorTheme from "./Form/ColorTheme";
 import Modes from "./Form/Modes";
+import Punctuation from "./Form/Punctuation";
 import Volume from "./Form/Volume/Volume";
 
 class SettingsModal extends React.Component<any, any> {
@@ -28,8 +29,14 @@ class SettingsModal extends React.Component<any, any> {
         </div>
 
         <div className="modal-body">
+
           <Modes />
+
           <Volume />
+
+          <legend>Advanced</legend>
+          <Punctuation />
+
         </div>
 
       </div>

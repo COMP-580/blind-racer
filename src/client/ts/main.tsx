@@ -81,12 +81,14 @@ $(document).ready(() => {
   let masterVolume = parseFloat(Cookies.get("masterVolume")) || 0.5;
   let soundVolume = parseFloat(Cookies.get("soundVolume")) || 0.5;
   let speechVolume = parseFloat(Cookies.get("speechVolume")) || 0.5;
+  let checkPunctuation = Cookies.get("checkPunctuation") === "true" || false;
 
   SettingsActions.changeColorTheme(colorTheme);
   SettingsActions.changeTypingMode(typingMode);
   SettingsActions.changeMasterVolume(masterVolume);
   SettingsActions.changeSoundVolume(soundVolume);
   SettingsActions.changeSpeechVolume(speechVolume);
+  SettingsActions.changeCheckPunctuation(checkPunctuation);
 
   // Load assets
   SoundActions.loadSound({name: "inception-horn", path: "assets/sounds/inception-horn.mp3", volume: 1.0});

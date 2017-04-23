@@ -20,6 +20,7 @@ interface ISettingsStoreState {
   masterVolume: number;
   soundVolume: number;
   speechVolume: number;
+  checkPunctuation: boolean;
 }
 
 class AltSettingsStore extends AbstractStoreModel<ISettingsStoreState> implements ISettingsStoreState {
@@ -29,6 +30,7 @@ class AltSettingsStore extends AbstractStoreModel<ISettingsStoreState> implement
   public masterVolume: number;
   public soundVolume: number;
   public speechVolume: number;
+  public checkPunctuation: boolean;
 
   constructor() {
     super();
@@ -37,12 +39,15 @@ class AltSettingsStore extends AbstractStoreModel<ISettingsStoreState> implement
     this.masterVolume = 0.5;
     this.soundVolume = 0.5;
     this.speechVolume = 0.5;
+    this.checkPunctuation = false;
 
     this.bindAction(SettingsActions.changeColorTheme, this.onChangeColorTheme);
     this.bindAction(SettingsActions.changeTypingMode, this.onChangeTypingMode);
     this.bindAction(SettingsActions.changeMasterVolume, this.onChangeMasterVolume);
     this.bindAction(SettingsActions.changeSoundVolume, this.onChangeSoundVolume);
     this.bindAction(SettingsActions.changeSpeechVolume, this.onChangeSpeechVolume);
+    this.bindAction(SettingsActions.changeCheckPunctuation, this.onChangeCheckPunctuation);
+
   }
 
   public onChangeColorTheme(colorTheme: ColorTheme) {
@@ -68,6 +73,10 @@ class AltSettingsStore extends AbstractStoreModel<ISettingsStoreState> implement
   public onChangeSpeechVolume(volume: number) {
     this.speechVolume = volume;
     Cookies.set("speechVolume", volume);
+  }
+
+  public onChangeCheckPunctuation(check: boolean) {
+    Cookies.set("checkPunctuation", check);
   }
 
 }

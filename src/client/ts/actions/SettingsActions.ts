@@ -15,6 +15,7 @@ interface ISettingsActions {
   changeMasterVolume(volume: number): void;
   changeSoundVolume(volume: number): void;
   changeSpeechVolume(volume: number): void;
+  changeCheckPunctuation(check: boolean): void;
 }
 
 class SettingsActions extends AbstractActions {
@@ -26,6 +27,7 @@ class SettingsActions extends AbstractActions {
       "changeMasterVolume",
       "changeSoundVolume",
       "changeSpeechVolume",
+      "changeCheckPunctuation",
     );
   }
 }
