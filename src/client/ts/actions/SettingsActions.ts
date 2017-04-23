@@ -12,7 +12,10 @@ import { TypingMode } from "../enums/TypingMode";
 interface ISettingsActions {
   changeColorTheme(theme: ColorTheme): void;
   changeTypingMode(mode: TypingMode): void;
-  changeVolume(volume: number): void;
+  changeMasterVolume(volume: number): void;
+  changeSoundVolume(volume: number): void;
+  changeSpeechVolume(volume: number): void;
+  changeCheckPunctuation(check: boolean): void;
 }
 
 class SettingsActions extends AbstractActions {
@@ -21,7 +24,10 @@ class SettingsActions extends AbstractActions {
     this.generateActions(
       "changeColorTheme",
       "changeTypingMode",
-      "changeVolume",
+      "changeMasterVolume",
+      "changeSoundVolume",
+      "changeSpeechVolume",
+      "changeCheckPunctuation",
     );
   }
 }

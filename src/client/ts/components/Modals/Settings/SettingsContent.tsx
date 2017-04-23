@@ -6,6 +6,11 @@
 
 import * as React from "react";
 
+import ColorTheme from "./Form/ColorTheme";
+import Modes from "./Form/Modes";
+import Punctuation from "./Form/Punctuation";
+import Volume from "./Form/Volume/Volume";
+
 class SettingsModal extends React.Component<any, any> {
 
   constructor() {
@@ -20,11 +25,18 @@ class SettingsModal extends React.Component<any, any> {
           <button type="button" className="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 className="modal-title">Settings</h4>
+          <h3 className="modal-title">Settings</h3>
         </div>
 
         <div className="modal-body">
-          <p>Lots of nice and cool settings</p>
+
+          <Modes />
+
+          <Volume />
+
+          <legend>Advanced</legend>
+          <Punctuation />
+
         </div>
 
       </div>

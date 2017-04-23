@@ -9,9 +9,11 @@
  */
 
 // let $ = require("../libraries/jquery/dist/jquery");
-// (global as any).jQuery = $;
-// (global as any).$ = $;
-// require("../libraries/bootstrap-sass/assets/javascripts/bootstrap");
+let $ = require("jquery");
+(global as any).jQuery = $;
+(global as any).$ = $;
+require("../libraries/bootstrap-sass/assets/javascripts/bootstrap.min");
+require("../libraries/seiyria-bootstrap-slider/dist/bootstrap-slider.min");
 import * as Cookies from "js-cookie";
 
 /**
@@ -76,11 +78,17 @@ $(document).ready(() => {
   // Set defaults based off cookie values
   let colorTheme = toColorTheme(parseInt(Cookies.get("colorTheme"))) || ColorTheme.STANDARD;
   let typingMode = toTypingMode(parseInt(Cookies.get("typingMode"))) || TypingMode.STANDARD;
-  let volume = parseFloat(Cookies.get("volume")) || 0.5;
+  let masterVolume = parseFloat(Cookies.get("masterVolume")) || 0.5;
+  let soundVolume = parseFloat(Cookies.get("soundVolume")) || 0.5;
+  let speechVolume = parseFloat(Cookies.get("speechVolume")) || 0.5;
+  let checkPunctuation = Cookies.get("checkPunctuation") === "true" || false;
 
   SettingsActions.changeColorTheme(colorTheme);
   SettingsActions.changeTypingMode(typingMode);
-  SettingsActions.changeVolume(volume);
+  SettingsActions.changeMasterVolume(masterVolume);
+  SettingsActions.changeSoundVolume(soundVolume);
+  SettingsActions.changeSpeechVolume(speechVolume);
+  SettingsActions.changeCheckPunctuation(checkPunctuation);
 
   // Load assets
   SoundActions.loadSound({name: "inception-horn", path: "assets/sounds/inception-horn.mp3", volume: 1.0});
@@ -90,4 +98,5 @@ $(document).ready(() => {
   // // Test
   // SoundActions.playSound("ding");
   // TimingActions.startTyping();
+  // SpeechActions.spellWord("daniel");
 });

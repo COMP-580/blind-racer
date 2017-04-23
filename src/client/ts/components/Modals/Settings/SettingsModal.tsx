@@ -17,7 +17,7 @@ class SettingsModal extends React.Component<any, any> {
     return (
       <div id="settings-modal" className="modal fade" tabIndex={-1} role="dialog">
         <div className="modal-dialog" role="document">
-          <SettingsContent />
+          {/*<SettingsContent />*/}
         </div>
       </div>
     );

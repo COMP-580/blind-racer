@@ -58,6 +58,7 @@ class AltLeaderboardStore extends AbstractStoreModel<ILeaderboardStoreState> imp
   public onRefreshLeaderboard() {
 
     // Fade in the overlay
+    $("#lb-overlay").stop();
     $("#lb-overlay").fadeIn();
 
     // Make the button spin and disable
