@@ -73,6 +73,7 @@ class AltTimerStore extends AbstractStoreModel<ITimerStoreState> implements ITim
   }
 
   public onStopTyping() {
+    this.onUpdateTimer();
     clearTimeout(this.timerInterval);
   }
 
