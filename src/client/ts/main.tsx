@@ -98,4 +98,5 @@ $(document).ready(() => {
   // // Test
   // SoundActions.playSound("ding");
   // TimingActions.startTyping();
+  // SpeechActions.spellWord("daniel");
 });

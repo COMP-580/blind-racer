@@ -8,6 +8,7 @@ import { AbstractActions, alt } from "../alt";
 
 interface ISpeechActions {
   sayText(text: string): void;
+  spellWord(word: string): void;
 }
 
 class SpeechActions extends AbstractActions {
@@ -15,6 +16,7 @@ class SpeechActions extends AbstractActions {
     super(config);
     this.generateActions(
       "sayText",
+      "spellWord",
     );
   }
 }
