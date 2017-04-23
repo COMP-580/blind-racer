@@ -306,7 +306,7 @@ gulp.task("compile-server-ts", function() {
     .pipe(gulp.dest(config.server.ts.out));
 });
 
-gulp.task("watch-server-ts", function() {
+gulp.task("watch-server-ts", ["compile-server-ts"], function() {
   return gulp.watch(config.server.ts.src, function() {
       return gulp.start("compile-server-ts");
   });
