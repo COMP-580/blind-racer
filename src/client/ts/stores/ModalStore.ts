@@ -6,6 +6,7 @@
 
 import { AbstractStoreModel, alt } from "../alt";
 
+import GameActions from "../actions/GameActions";
 import ModalActions from "../actions/ModalActions";
 
 import { Modal } from "../enums/Modal";
@@ -22,7 +23,15 @@ class AltModalStore extends AbstractStoreModel<IModalStoreState> implements IMod
     super();
     this.currentModal = null;
 
+    this.bindAction(GameActions.startGame, this.onStartGame);
     this.bindAction(ModalActions.openModal, this.onOpenModal);
+  }
+
+  public onStartGame() {
+    if (this.currentModal) {
+      let currentModal = $("#" + this.currentModal);
+      currentModal.modal("hide");
+    }
   }
 
   public onOpenModal(modal: Modal) {
