@@ -13,6 +13,7 @@
   ],
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
-    "font-awesome": "fontawesome#^4.7.0"
+    "font-awesome": "fontawesome#^4.7.0",
+    "seiyria-bootstrap-slider": "^9.7.3"
   }
 }
