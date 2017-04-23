@@ -36,6 +36,7 @@ let gutil = require("gulp-util");
 let htmlmin = require("gulp-htmlmin");
 let minifyImg = require("gulp-imagemin");
 let nodemon = require("gulp-nodemon");
+let path = require("path");
 let reactDOMServer = require('react-dom/server');
 let react = require('react');
 let rimraf = require("rimraf");
@@ -162,8 +163,9 @@ gulp.task("minify-img", function(done) {
 gulp.task("compile-html", function(done) {
 
   let dir = config.client.html.out;
-  if (!fs.existsSync(dir + "/..")) {
-    fs.mkdirSync(dir + "/..");
+  let preDir = path.resolve(dir, "..");
+  if (!fs.existsSync(preDir)) {
+    fs.mkdirSync(preDir);
   }
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
