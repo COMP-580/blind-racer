@@ -95,6 +95,9 @@ $(document).ready(() => {
   SoundActions.loadSound({name: "ding",           path: "assets/sounds/ding.mp3",           volume: 0.1});
   SoundActions.loadSound({name: "party-horn",     path: "assets/sounds/party-horn.mp3",     volume: 0.5});
 
+  // Attach handlers
+  require("./page-handlers");
+
   // // Test
   // SoundActions.playSound("ding");
   // TimingActions.startTyping();
