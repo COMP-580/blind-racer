@@ -8,6 +8,7 @@
 import { AbstractStoreModel, alt } from "../alt";
 
 import GameActions from "../actions/GameActions";
+import SettingsActions from "../actions/SettingsActions";
 import SoundActions from "../actions/SoundActions";
 import SpeechActions from "../actions/SpeechActions";
 import TimingActions from "../actions/TimingActions";
@@ -18,6 +19,7 @@ interface IGameTextStoreState {
   finishedWords: string[];
   currentWord: string;
   unfinishedWords: string[];
+  checkPunctuation: boolean;
 }
 
 class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implements IGameTextStoreState {
@@ -25,6 +27,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   public finishedWords: string[];
   public currentWord: string;
   public unfinishedWords: string[];
+  public checkPunctuation: boolean;
 
   constructor() {
     super();
@@ -33,10 +36,12 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     this.unfinishedWords = this.phrase.split(" ");
     this.currentWord = this.unfinishedWords[0];
     this.unfinishedWords.shift();
+    this.checkPunctuation = false;
 
     this.bindAction(GameActions.startGame, this.onStartGame);
     this.bindAction(GameActions.fetchGameText, this.onFetchGameText);
     this.bindAction(TypingActions.typeWord, this.onTypeWord);
+    this.bindAction(SettingsActions.changeCheckPunctuation, this.onChangeCheckPunctuation);
   }
 
   public onStartGame() {
@@ -45,7 +50,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   }
 
   public onFetchGameText() {
-    let phrase = "My giant fat cat Died Last weak. Fuck me";
+    let phrase = "My giant, fat cat Died Last weak. Fuck; me";
     this.parsePhrase(phrase);
   }
 
@@ -58,8 +63,18 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   }
 
   public onTypeWord(word: string) {
-    if (word === this.currentWord) {  // Typed the word correctly
-      this.finishedWords.push(word);
+
+    if (this.checkWord(word, this.currentWord, this.checkPunctuation)) {
+      // this.finishedWords.push(word);
+      // this.currentWord = this.unfinishedWords[0];
+      // this.unfinishedWords.shift();
+      // if (this.currentWord) {
+      //   (<any> SpeechActions).sayText.defer(this.currentWord);
+      // }
+      // (<any> SoundActions).playSound.defer("ding");
+      // (<any> TypingActions).wordSuccess.defer(word);
+
+      this.finishedWords.push(this.currentWord);
       this.currentWord = this.unfinishedWords[0];
       this.unfinishedWords.shift();
       if (this.currentWord) {
@@ -67,16 +82,34 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
       }
       (<any> SoundActions).playSound.defer("ding");
       (<any> TypingActions).wordSuccess.defer(word);
-    } else {    // Typed the word incorrectly
+    } else {
       (<any> SoundActions).playSound.defer("inception-horn");
     }
 
+    // Check if finished
     if (!this.currentWord) {
       this.currentWord = "";
       (<any> SoundActions).playSound.defer("party-horn");
       (<any> TimingActions).stopTyping.defer();
       (<any> GameActions).endGame.defer();
     }
+  }
+
+  public checkWord(word: string, expected: string, checkPunctuation: boolean) {
+    if (checkPunctuation) {
+      return word === expected;
+    } else {
+      word = word.toLowerCase();
+      expected = expected.toLowerCase();
+
+      // Strip punctuation
+      expected = expected.replace(/[;,\.]+/i, "");
+      return word === expected;
+    }
+  }
+
+  public onChangeCheckPunctuation(check: boolean) {
+    this.checkPunctuation = check;
   }
 
 }
