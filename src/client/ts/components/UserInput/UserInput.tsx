@@ -21,13 +21,6 @@ class UserInput extends React.Component<any, any> {
 
   public onKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
     this.state.keyPressHandler(e);
-
-    // The keycode for enter is 13
-    if (e.which === 13) {
-      // Start the game
-      GameActions.startGame();
-      TimingActions.startTyping();
-    }
   }
 
   public componentDidMount() {
@@ -45,14 +38,18 @@ class UserInput extends React.Component<any, any> {
   public render() {
     return(
       <div className="row">
-        <input
-          id={this.props.id}
-          className="form-control"
-          type="text"
-          placeholder={this.props.defaultValue}
-          onKeyPress={this.onKeyPress.bind(this)}
-          disabled
-        />
+        <div className="col-xs-12">
+          <div className="user-input-div">
+            <input
+              id={this.props.id}
+              className="form-control"
+              type="text"
+              placeholder={this.props.defaultValue}
+              onKeyPress={this.onKeyPress.bind(this)}
+              disabled
+            />
+          </div>
+        </div>
       </div>
     );
   }

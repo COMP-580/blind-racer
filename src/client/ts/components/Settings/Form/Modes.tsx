@@ -6,9 +6,9 @@
 
 import * as Cookies from "js-cookie";
 import * as React from "react";
-import SettingsActions from "../../../../actions/SettingsActions";
+import SettingsActions from "../../../actions/SettingsActions";
 
-import { toTypingMode, TypingMode } from "../../../../enums/TypingMode";
+import { toTypingMode, TypingMode } from "../../../enums/TypingMode";
 
 class Modes extends React.Component<any, any> {
 
@@ -43,7 +43,6 @@ class Modes extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        <legend>Typing Mode</legend>
         <div className="radio">
           <label><input id="typing-mode-standard" type="radio" name="ModeType" value="1"/>Standard</label>
         </div>

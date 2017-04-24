@@ -8,7 +8,7 @@
 
 import * as Cookies from "js-cookie";
 import * as React from "react";
-import SettingsActions from "../../../../../actions/SettingsActions";
+import SettingsActions from "../../../../actions/SettingsActions";
 
 class MasterVolume extends React.Component<any, any> {
 
@@ -41,7 +41,7 @@ class MasterVolume extends React.Component<any, any> {
 
   public render() {
     return (
-      <input id="master-volume-slider" type="text" />
+      <input id="master-volume-slider" className="volume-slider" type="text" />
     );
   }
 }

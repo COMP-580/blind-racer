@@ -110,12 +110,20 @@ gulp.task('apply-prod-environment', function() {
 
 // Compile client scss
 gulp.task("compile-scss", function(done) {
-  gulp.src(config.client.scss.src)
+  try {
+    gulp.src(config.client.scss.src)
     .pipe(sass())
+    .on("error", function(e) {
+      gutil.log(gutil.colors.red(e.toString()));
+      this.emit("end");
+    })
     .pipe(gulp.dest(config.client.scss.out))
     .on("end", function() {
       done();
     });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 

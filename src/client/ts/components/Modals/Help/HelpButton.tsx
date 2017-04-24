@@ -22,8 +22,8 @@ class HelpButton extends React.Component<any, any> {
   public render() {
     return (
       <a href="#" onClick={this.onClick}>
-        <span>Help</span>
-        <i className="fa fa-question fa-fw pull-right"></i>
+        {/*<span>Help</span>*/}
+        <i className="fa fa-question fa-fw"></i>
       </a>
     );
   }

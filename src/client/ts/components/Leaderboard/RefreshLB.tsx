@@ -21,9 +21,9 @@ class RefreshLB extends React.Component<any, any> {
 
   public render() {
     return (
-      <button id="refresh-lb-btn" className="btn btn-default" onClick={this.onClick}>
-        <i id="refresh-lb-fa" className="fa fa-refresh"></i>
-      </button>
+      <a href="#" onClick={this.onClick}>
+        <i id="refresh-lb-fa" className="fa fa-refresh fa-fw pull-right"></i>
+      </a>
     );
   }
 }

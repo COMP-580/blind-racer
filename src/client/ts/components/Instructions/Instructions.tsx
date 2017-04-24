@@ -15,8 +15,8 @@ class Instructions extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        <p>Instructions Test</p>
-        <span className="fa fa-car"></span>
+        <i className="fa fa-arrow-right"></i>
+        <span>Hit shift+enter to play!</span>
       </div>
     );
   }

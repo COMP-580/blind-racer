@@ -83,7 +83,7 @@ class VirtualKeyboard extends React.Component<any, any> {
           <Key id="vkb-48" value="0" width="1" />
           <Key id="vkb-189" value="-" width="1" />
           <Key id="vkb-187" value="=" width="1" />
-          <Key id="vkb-8" value="backspace" width="2"/>
+          <Key id="vkb-8" value="del" width="2"/>
         </ul>
 
         <ul id="kb-r2" className="row keyboard-row">
@@ -104,7 +104,7 @@ class VirtualKeyboard extends React.Component<any, any> {
         </ul>
 
         <ul id="kb-r3" className="keyboard-row">
-          <Key id="vkb-20" value="caps lock" width="1.75" />
+          <Key id="vkb-20" value="caps" width="1.75" />
           <Key id="vkb-65" value="a" width="1" />
           <Key id="vkb-83" value="s" width="1" />
           <Key id="vkb-68" value="d" width="1" />

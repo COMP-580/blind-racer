@@ -20,21 +20,20 @@ class Volume extends React.Component<any, any> {
   public render() {
     return (
       <form className="form-horizontal">
-        <legend>Volume</legend>
 
-        <div className="form-group ">
-          <label className="control-label col-xs-2" htmlFor="master-volume-slider">Master</label>
-          <MasterVolume />
+        <div className="form-group no-bottom-padding">
+          <label className="form-label col-xs-3 "><b>Master</b></label>
+          <div className="col-xs-9"><MasterVolume /></div>
+        </div>
+
+        <div className="form-group no-bottom-padding">
+          <label className="form-label col-xs-3 "><b>Sounds</b></label>
+          <div className="col-xs-9"><SoundVolume /></div>
         </div>
 
         <div className="form-group">
-          <label className="control-label col-xs-2" htmlFor="sound-volume-slider">Sounds</label>
-          <SoundVolume />
-        </div>
-
-        <div className="form-group">
-          <label className="control-label col-xs-2" htmlFor="speech-volume-slider">Speech</label>
-          <SpeechVolume />
+          <label className="form-label col-xs-3 no-bottom-padding"><b>Speech</b></label>
+          <div className="col-xs-9"><SpeechVolume /></div>
         </div>
 
       </form>

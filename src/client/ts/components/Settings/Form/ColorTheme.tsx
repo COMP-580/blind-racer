@@ -5,9 +5,9 @@
  */
 
 import * as React from "react";
-import SettingsActions from "../../../../actions/SettingsActions";
+import SettingsActions from "../../../actions/SettingsActions";
 
-import { ColorTheme } from "../../../../enums/ColorTheme";
+import { ColorTheme } from "../../../enums/ColorTheme";
 
 class ColorThemeClass extends React.Component<any, any> {
 
@@ -28,7 +28,6 @@ class ColorThemeClass extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        <p>Color Theme Test</p>
         <div className ="radio">
           <label><input type="radio" name="ColorTheme"/>Color Theme 1</label>
         </div>

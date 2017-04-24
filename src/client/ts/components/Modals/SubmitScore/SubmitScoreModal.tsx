@@ -45,22 +45,25 @@ class SubmitScoreModal extends React.Component<any, any> {
   public render() {
     return (
       <div id="submit-score-modal" className="modal fade" tabIndex={-1} role="dialog">
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog modal-sm" role="document">
           <div className="modal-content">
 
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h4 className="modal-title">Submit Score</h4>
+              <h4 className="modal-title">Submit Score - {this.state.wpm} WPM</h4>
             </div>
 
             <div className="modal-body">
               <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input id="submit-username" type="text" className="form-control" />
+                <div className="form-group no-bottom-padding">
+                  <label htmlFor="submit-username">Username:</label>
+                  <input id="submit-username" type="text" className="form-control" maxLength={10}/>
+                  <div className="text-center">
+                    <button type="submit" className="btn btn-default">Submit</button>
+                  </div>
                 </div>
-                <button type="submit" className="btn btn-default">Submit</button>
               </form>
             </div>
 

@@ -6,7 +6,7 @@
 
 import * as Cookies from "js-cookie";
 import * as React from "react";
-import SettingsActions from "../../../../actions/SettingsActions";
+import SettingsActions from "../../../actions/SettingsActions";
 
 class CheckPunctuation extends React.Component<any, any> {
 

@@ -73,6 +73,7 @@ class AltModalStore extends AbstractStoreModel<IModalStoreState> implements IMod
     let submitScoreModal = $("#" + submitScoreId);
     submitScoreModal.modal("show");
     this.currentModal = submitScoreId;
+    $("#submit-username").val("");
   }
 
 }

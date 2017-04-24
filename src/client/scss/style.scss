@@ -3,16 +3,19 @@
 @import "../libraries/seiyria-bootstrap-slider/dist/css/bootstrap-slider";
 // @import url("//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
 
+@import "theme.scss";
 @import "./sidebar-nav";
 @import "./keyboard";
 @import "./leaderboard";
+@import "./navbar";
+@import "./settings";
 
 .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
+  // min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  // min-height: 100vh; /* These two lines are counted as one :-)       */
 
-  display: flex;
-  align-items: center;
+  // display: flex;
+  // align-items: center;
 }
 
 // .row-same-height {
@@ -28,12 +31,26 @@
 //   flex-direction: column;
 // }
 
-.word-finished{
-  background-color: limegreen;
+#text-box {
+  background-color: white;
+  padding: 5px;
+  border-color: #1B9AAA;
+  border-width: 2px;
+  border-style: solid;
+  margin-bottom: 5px;
+}
+
+#user-input-div {
+  background-color: #AAAAAA;
+}
+
+.word-finished {
+  background-color: transparent;
+  color: #009660;
 }
 
 .word-current{
-  background-color: yellow;
+  background-color: #CCCCCC;
 }
 
 .word-unfinished{
@@ -42,4 +59,27 @@
 
 .p-inline{
   display:inline;
+}
+
+.slider {
+  width: 100% !important;
+}
+
+.slider-handle {
+	background: #337ab7;
+}
+
+.legend {
+  font-family: "Arial", sans-serif;
+  border-bottom: 1px solid black;
+  color: black;
+}
+
+.no-bottom-padding {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+#submit-username {
+  margin-bottom: 15px;
 }

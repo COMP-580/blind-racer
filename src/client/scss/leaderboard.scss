@@ -37,6 +37,9 @@ tr {
 
 .lb-table {
   margin-bottom: 0;
+  border-color: #FFFFFF;
+  border-style: solid;
+  border-width: 2px;
 }
 
 .lb-table-row {
@@ -45,5 +48,16 @@ tr {
 
 .lb-table-td {
   padding: 0 !important;
+  padding-left: 10px !important;
   border: 0 !important;
+}
+
+#refresh-lb-fa {
+  margin-top: 5px;
+  vertical-align: middle;
+  color: #777;
+}
+
+#refresh-lb-fa:hover {
+  color: #333;
 }

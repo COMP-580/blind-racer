@@ -6,6 +6,8 @@
 
 import * as React from "react";
 
+import RefreshLB from "./RefreshLB";
+
 import { ILeaderboardStoreState, LeaderboardStore } from "../../stores/LeaderboardStore";
 
 class Leaderboard extends React.Component<any, any> {
@@ -36,12 +38,26 @@ class Leaderboard extends React.Component<any, any> {
         </div>
 
         <div id="lb-container">
+          <legend className="legend">Leaderboard<RefreshLB /></legend>
 
+          <h4>Hourly</h4>
           <table className="table table-striped table-condensed table-hover lb-table">
-            <caption>Hourly</caption>
-
             <tbody>
               {this.state.hourlyScores.map((s: any, i: number) => {
+                return (
+                  <tr key={"hourly-" + i} className="lb-table-row">
+                    <td className="lb-table-td">{s.username}</td>
+                    <td className="lb-table-td">{s.score}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          <h4>Daily</h4>
+          <table className="table table-striped table-condensed table-hover lb-table">
+            <tbody>
+              {this.state.dailyScores.map((s: any, i: number) => {
                 return (
                   <tr key={"hourly-" + i} className="lb-table-row">
                     <td className="lb-table-td">{s.username}</td>
@@ -53,22 +69,6 @@ class Leaderboard extends React.Component<any, any> {
 
           </table>
 
-          {/*<p>Hourly</p>
-          {this.state.hourlyScores.map((s: any, i: number) => {
-            return (
-              <div key={i}>
-                <span>{s.username} - {s.score}</span>
-              </div>
-            );
-          })}
-          <p>Daily</p>
-          {this.state.dailyScores.map((s: any, i: number) => {
-            return (
-              <div key={i}>
-                <span>{s.username} - {s.score}</span>
-              </div>
-            );
-          })}*/}
         </div>
 
       </div>

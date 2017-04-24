@@ -31,7 +31,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
 
   constructor() {
     super();
-    this.phrase = "My giant fat cat Died Last weak. Fuck me";
+    this.phrase = "";
     this.finishedWords = [];
     this.unfinishedWords = this.phrase.split(" ");
     this.currentWord = this.unfinishedWords[0];
@@ -50,7 +50,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   }
 
   public onFetchGameText() {
-    let phrase = "My giant, fat cat Died Last weak. Fuck; me";
+    let phrase = "My giant, fat cat Died Last weak. ";
     this.parsePhrase(phrase);
   }
 
@@ -65,14 +65,6 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   public onTypeWord(word: string) {
 
     if (this.checkWord(word, this.currentWord, this.checkPunctuation)) {
-      // this.finishedWords.push(word);
-      // this.currentWord = this.unfinishedWords[0];
-      // this.unfinishedWords.shift();
-      // if (this.currentWord) {
-      //   (<any> SpeechActions).sayText.defer(this.currentWord);
-      // }
-      // (<any> SoundActions).playSound.defer("ding");
-      // (<any> TypingActions).wordSuccess.defer(word);
 
       this.finishedWords.push(this.currentWord);
       this.currentWord = this.unfinishedWords[0];
@@ -83,6 +75,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
       (<any> SoundActions).playSound.defer("ding");
       (<any> TypingActions).wordSuccess.defer(word);
     } else {
+      (<any> SpeechActions).sayText.defer(this.currentWord);
       (<any> SoundActions).playSound.defer("inception-horn");
     }
 

@@ -22,8 +22,8 @@ class AboutButton extends React.Component<any, any> {
   public render() {
     return (
       <a href="#" onClick={this.onClick}>
-        <span>About</span>
-        <i className="fa fa-info-circle fa-fw pull-right"></i>
+        {/*<span>About</span>*/}
+        <i className="fa fa-info-circle fa-fw"></i>
       </a>
     );
   }

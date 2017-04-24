@@ -14,5 +14,6 @@ $(document).on("keypress", (e: any) => {
   if (shifted && key === 13) {
     GameActions.startGame();
     TimingActions.startTyping();
+    $("#text-input").val("");
   }
 });

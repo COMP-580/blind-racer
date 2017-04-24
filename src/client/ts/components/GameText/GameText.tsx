@@ -29,22 +29,25 @@ class GameText extends React.Component<any, any> {
   }
 
   public render() {
-    return(
-      <div>
-        <p>{this.props.id}</p>
-        <p className="p-inline word-finished">
-          {this.state.finishedWords.map((w: string[]) => {
-            return w + " ";
-          })}
-        </p>
-        <p className="p-inline word-current">
-          {this.state.currentWord + " "}
-        </p>
-        <p className="p-inline word-unfinished">
-          {this.state.unfinishedWords.map((w: string[]) => {
-            return w + " ";
-          })}
-        </p>
+    return (
+      <div className="row">
+        <div className="col-xs-12">
+          <div id="text-box">
+            <p className="p-inline word-finished">
+              {this.state.finishedWords.map((w: string[]) => {
+                return w + " ";
+              })}
+            </p>
+            <p className="p-inline word-current">
+              {this.state.currentWord}
+            </p>
+            <p className="p-inline word-unfinished">
+              {this.state.unfinishedWords.map((w: string[]) => {
+                return " " + w;
+              })}
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

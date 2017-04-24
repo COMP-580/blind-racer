@@ -1,5 +1,8 @@
 $key-unit: (100/15)*1%;
-$keyboard-border: #880088;
+$keyboard-border: #1B9AAA;
+$keyboard-color: #FFFFFF;
+$text-color: #001A57;
+$pressed-color: #06D6A0;
 
 .keyboard {
   background: #666666;
@@ -7,6 +10,7 @@ $keyboard-border: #880088;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Arial", Times, serif;;
 }
 
 .keyboard-collapse {
@@ -25,9 +29,10 @@ $keyboard-border: #880088;
   height: 0;
   padding-bottom: $key-unit;
   text-align: center;
-  background: #FFFFFF;
+  background: $keyboard-color;
   border: 1px solid $keyboard-border;
   position: relative;
+  color: $text-color;
 }
 
 .key:hover {
@@ -36,7 +41,7 @@ $keyboard-border: #880088;
 }
 
 .key-pressed {
-  background: #880088;
+  background: $pressed-color;
 }
 
 
