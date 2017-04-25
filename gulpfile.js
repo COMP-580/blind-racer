@@ -365,6 +365,6 @@ gulp.task("watch", ["watch-scss", "watch-img", "watch-html", "watch-client-ts", 
   return gulp.start("nodemon");
 });
 
-gulp.task("minify", ["minify-scss", "minify-img", "minify-html", "minify-client-ts", "minify-server-ts"]);
+gulp.task("minify", ["minify-scss", "minify-img", "minify-html", "minify-client-ts", "minify-server-ts", "move-server-static"]);
 
 gulp.task("default", ["watch"]);
