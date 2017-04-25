@@ -33,6 +33,9 @@ class AltSpeechStore extends AbstractStoreModel<ISpeechStoreState> implements IS
     this.masterVolume = 1;
     this.speechVolume = 0.25;
     this.volume = this.masterVolume * this.speechVolume;
+
+    responsiveVoice.setDefaultVoice("US English Female");
+
     this.bindAction(SpeechActions.sayText, this.onSayText);
     this.bindAction(SpeechActions.spellWord, this.onSpellWord);
     this.bindAction(SettingsActions.changeMasterVolume, this.onChangeMasterVolume);
@@ -45,7 +48,8 @@ class AltSpeechStore extends AbstractStoreModel<ISpeechStoreState> implements IS
 
   public onSpellWord(word: string) {
     // Sanitize word
-    word = word;
+    word = word.toLowerCase();
+    word = word.replace(/[;,\.]+/i, "");
 
     // Separate by characters
     let characters = word.split("");

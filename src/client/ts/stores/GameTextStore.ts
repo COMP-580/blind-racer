@@ -42,6 +42,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     this.bindAction(GameActions.fetchGameText, this.onFetchGameText);
     this.bindAction(TypingActions.typeWord, this.onTypeWord);
     this.bindAction(SettingsActions.changeCheckPunctuation, this.onChangeCheckPunctuation);
+    this.bindAction(GameActions.spellCurrentWord, this.onSpellCurrentWord);
   }
 
   public onStartGame() {
@@ -103,6 +104,12 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
 
   public onChangeCheckPunctuation(check: boolean) {
     this.checkPunctuation = check;
+  }
+
+  public onSpellCurrentWord() {
+    if (this.currentWord) {
+      (<any> SpeechActions).spellWord.defer(this.currentWord);
+    }
   }
 
 }

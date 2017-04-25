@@ -32,6 +32,7 @@ import TypingActions from  "./actions/TypingActions";
 import VirtualKeyboardActions from "./actions/VirtualKeyboardActions";
 
 // Stores
+import "./stores/GameButtonStore";
 import "./stores/GameTextStore";
 import "./stores/LeaderboardStore";
 import "./stores/ModalStore";

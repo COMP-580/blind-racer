@@ -28,6 +28,7 @@ class AltUserInputStore extends AbstractStoreModel<IUserInputStoreState> impleme
   }
 
   public onStartGame() {
+    $("#text-input").val("");
     $("#text-input").prop("disabled", false);
     $("#text-input").focus();
   }
