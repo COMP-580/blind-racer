@@ -10,7 +10,12 @@ interface IGameActions {
   fetchGameText(): void;
   startGame(stats?: any): void;
   endGame(): void;
+  sayCurrentWord(): void;
   spellCurrentWord(): void;
+  spellInput(): void;
+  disableButtons(): void;
+  enableButtons(): void;
+  checkCharsSoFar(word: string): void;
 }
 
 class GameActions extends AbstractActions {
@@ -20,7 +25,12 @@ class GameActions extends AbstractActions {
       "fetchGameText",
       "startGame",
       "endGame",
+      "sayCurrentWord",
       "spellCurrentWord",
+      "spellInput",
+      "disableButtons",
+      "enableButtons",
+      "checkCharsSoFar",
     );
   }
 }

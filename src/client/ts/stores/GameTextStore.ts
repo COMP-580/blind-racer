@@ -43,6 +43,8 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     this.bindAction(TypingActions.typeWord, this.onTypeWord);
     this.bindAction(SettingsActions.changeCheckPunctuation, this.onChangeCheckPunctuation);
     this.bindAction(GameActions.spellCurrentWord, this.onSpellCurrentWord);
+    this.bindAction(GameActions.sayCurrentWord, this.onSayCurrentWord);
+    this.bindAction(GameActions.checkCharsSoFar, this.onCheckCharsSoFar);
   }
 
   public onStartGame() {
@@ -110,6 +112,26 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     if (this.currentWord) {
       (<any> SpeechActions).spellWord.defer(this.currentWord);
     }
+  }
+
+  public onSayCurrentWord() {
+    if (this.currentWord) {
+      (<any> SpeechActions).sayText.defer(this.currentWord);
+    }
+  }
+
+  public onCheckCharsSoFar(word: string) {
+    let i = 0;
+    if (!word || !this.currentWord) {
+      return false;
+    }
+    while (i < word.length && i < this.currentWord.length) {
+      if (word.charAt(i) !== this.currentWord.charAt(i)) {
+        (<any> SoundActions).playSound.defer("inception-horn");
+        return false;
+      }
+    }
+    return true;
   }
 
 }

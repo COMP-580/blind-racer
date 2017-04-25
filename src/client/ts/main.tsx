@@ -99,6 +99,9 @@ $(document).ready(() => {
   // Attach handlers
   require("./page-handlers");
 
+  // Disable buttons
+  GameActions.disableButtons();
+
   // // Test
   // SoundActions.playSound("ding");
   // TimingActions.startTyping();

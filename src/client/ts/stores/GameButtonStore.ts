@@ -20,24 +20,35 @@ class AltGameButtonStore extends AbstractStoreModel<IGameButtonStoreState> imple
     super();
 
     this.buttonIds = [
+      "say-current-btn",
       "spell-current-btn",
-      "say-input-btn",
+      "spell-input-btn",
     ];
 
     this.bindAction(GameActions.startGame, this.onStartGame);
     this.bindAction(GameActions.endGame, this.onEndGame);
+    this.bindAction(GameActions.disableButtons, this.onDisableButtons);
+    this.bindAction(GameActions.enableButtons, this.onEnableButtons);
   }
 
-  public onStartGame() {
+  public onDisableButtons() {
+    this.buttonIds.map((bid: string) => {
+      $("#" + bid).prop("disabled", true);
+    });
+  }
+
+  public onEnableButtons() {
     this.buttonIds.map((bid: string) => {
       $("#" + bid).prop("disabled", false);
     });
   }
 
+  public onStartGame() {
+    this.onEnableButtons();
+  }
+
   public onEndGame() {
-    this.buttonIds.map((bid: string) => {
-      $("#" + bid).prop("disabled", true);
-    });
+    this.onDisableButtons();
   }
 
 }

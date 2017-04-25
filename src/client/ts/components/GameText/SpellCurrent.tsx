@@ -7,7 +7,7 @@
 import * as React from "react";
 import GameActions from "../../actions/GameActions";
 
-class ToggleKeyboard extends React.Component<any, any> {
+class SpellCurrent extends React.Component<any, any> {
 
   constructor() {
     super();
@@ -19,11 +19,11 @@ class ToggleKeyboard extends React.Component<any, any> {
 
   public render() {
     return (
-      <button id="spell-current-btn" className="btn btn-default" onClick={this.onClick} disabled>
-        <i className="fa fa-adn fa-fw"></i>
+      <button id="spell-current-btn" className="btn btn-default" onClick={this.onClick}>
+        <i className="fa fa-adn fa-fw"></i>2
       </button>
     );
   }
 }
 
-export default ToggleKeyboard;
+export default SpellCurrent;
