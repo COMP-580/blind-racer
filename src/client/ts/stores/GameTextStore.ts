@@ -14,12 +14,15 @@ import SpeechActions from "../actions/SpeechActions";
 import TimingActions from "../actions/TimingActions";
 import TypingActions from "../actions/TypingActions";
 
+import text from "./data/text";
+
 interface IGameTextStoreState {
   phrase: string;
   finishedWords: string[];
   currentWord: string;
   unfinishedWords: string[];
   checkPunctuation: boolean;
+  text: string[];
 }
 
 class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implements IGameTextStoreState {
@@ -28,11 +31,13 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   public currentWord: string;
   public unfinishedWords: string[];
   public checkPunctuation: boolean;
+  public text: string[];
 
   constructor() {
     super();
     this.phrase = "";
     this.finishedWords = [];
+    this.text = text;
     this.unfinishedWords = this.phrase.split(" ");
     this.currentWord = this.unfinishedWords[0];
     this.unfinishedWords.shift();
@@ -53,7 +58,8 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   }
 
   public onFetchGameText() {
-    let phrase = "My giant, fat cat Died Last weak. ";
+    let i = Math.floor(Math.random() * this.text.length);
+    let phrase = this.text[i];
     this.parsePhrase(phrase);
   }
 
@@ -96,7 +102,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
       return expected;
     } else {
       expected = expected.toLowerCase();
-      expected = expected.replace(/[;,\.]+/i, "");
+      expected = expected.replace(/[;,\.\?]+/i, "");
       return expected;
     }
   }
