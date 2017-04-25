@@ -37,8 +37,6 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     this.currentWord = this.unfinishedWords[0];
     this.unfinishedWords.shift();
     this.checkPunctuation = false;
-    this.correctChars = [];
-    this.wrongChars = [];
 
     this.bindAction(GameActions.startGame, this.onStartGame);
     this.bindAction(GameActions.fetchGameText, this.onFetchGameText);
