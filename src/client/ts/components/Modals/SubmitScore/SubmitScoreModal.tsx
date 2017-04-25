@@ -59,7 +59,7 @@ class SubmitScoreModal extends React.Component<any, any> {
               <form onSubmit={this.onSubmit}>
                 <div className="form-group no-bottom-padding">
                   <label htmlFor="submit-username">Username:</label>
-                  <input id="submit-username" type="text" className="form-control" maxLength={10}/>
+                  <input id="submit-username" type="text" className="form-control" maxLength={16}/>
                   <div className="text-center">
                     <button type="submit" className="btn btn-default">Submit</button>
                   </div>

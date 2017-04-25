@@ -33,10 +33,22 @@ class AltSpeechStore extends AbstractStoreModel<ISpeechStoreState> implements IS
     this.masterVolume = 1;
     this.speechVolume = 0.25;
     this.volume = this.masterVolume * this.speechVolume;
+
+    responsiveVoice.setDefaultVoice("US English Female");
+
     this.bindAction(SpeechActions.sayText, this.onSayText);
     this.bindAction(SpeechActions.spellWord, this.onSpellWord);
     this.bindAction(SettingsActions.changeMasterVolume, this.onChangeMasterVolume);
     this.bindAction(SettingsActions.changeSpeechVolume, this.onChangeSpeechVolume);
+  }
+
+  public replacePunctuation(text: string) {
+    text = text.replace(/,/i, " comma ");
+    text = text.replace(/'/i, " apostrophe");
+    text = text.replace(/"/i, " quotes ");
+    text = text.replace(/\./i, " period ");
+    // text = text.replace(/ /i, " space ");
+    return text;
   }
 
   public onSayText(text: string) {
@@ -45,11 +57,12 @@ class AltSpeechStore extends AbstractStoreModel<ISpeechStoreState> implements IS
 
   public onSpellWord(word: string) {
     // Sanitize word
-    word = word;
+    word = word.toLowerCase();
 
     // Separate by characters
     let characters = word.split("");
     let phrase = characters.join(" ");
+    phrase = this.replacePunctuation(phrase);
     responsiveVoice.speak(phrase, null, {volume: this.volume});
   }
 

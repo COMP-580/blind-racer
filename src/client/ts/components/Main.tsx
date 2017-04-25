@@ -8,6 +8,8 @@ import * as React from "react";
 
 import StartButton from "./Game/StartButton";
 import GameText from "./GameText/GameText";
+import SayCurrent from "./GameText/SayCurrent";
+import SpellCurrent from "./GameText/SpellCurrent";
 import Instructions from "./Instructions/Instructions";
 import Leaderboard from "./Leaderboard/Leaderboard";
 import Logo from "./Logo/Logo";
@@ -15,6 +17,7 @@ import AboutButton from "./Modals/About/AboutButton";
 import HelpButton from "./Modals/Help/HelpButton";
 import Settings from "./Settings/Settings";
 import Title from "./Title/Title";
+import SpellInput from "./UserInput/SpellInput";
 import UserInput from "./UserInput/UserInput";
 import UserStats from "./UserStats/UserStats";
 import KeyboardCollapse from "./VirtualKeyboard/KeyboardCollapse";
@@ -66,6 +69,9 @@ class Main extends React.Component<undefined, undefined> {
                     <UserStats />
                   </div>
                   <div className="text-center">
+                    <SayCurrent />
+                    <SpellInput />
+                    <SpellCurrent />
                     <ToggleKeyboard />
                     <StartButton />
                   </div>

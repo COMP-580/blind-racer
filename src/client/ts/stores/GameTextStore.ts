@@ -37,11 +37,16 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     this.currentWord = this.unfinishedWords[0];
     this.unfinishedWords.shift();
     this.checkPunctuation = false;
+    this.correctChars = [];
+    this.wrongChars = [];
 
     this.bindAction(GameActions.startGame, this.onStartGame);
     this.bindAction(GameActions.fetchGameText, this.onFetchGameText);
     this.bindAction(TypingActions.typeWord, this.onTypeWord);
     this.bindAction(SettingsActions.changeCheckPunctuation, this.onChangeCheckPunctuation);
+    this.bindAction(GameActions.spellCurrentWord, this.onSpellCurrentWord);
+    this.bindAction(GameActions.sayCurrentWord, this.onSayCurrentWord);
+    this.bindAction(GameActions.checkCharsSoFar, this.onCheckCharsSoFar);
   }
 
   public onStartGame() {
@@ -88,21 +93,67 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     }
   }
 
+  public processExpected(expected: string, checkPunctuation: boolean) {
+    if (checkPunctuation) {
+      return expected;
+    } else {
+      expected = expected.toLowerCase();
+      expected = expected.replace(/[;,\.]+/i, "");
+      return expected;
+    }
+  }
+
   public checkWord(word: string, expected: string, checkPunctuation: boolean) {
     if (checkPunctuation) {
       return word === expected;
     } else {
       word = word.toLowerCase();
-      expected = expected.toLowerCase();
+      expected = this.processExpected(expected, checkPunctuation);
 
-      // Strip punctuation
-      expected = expected.replace(/[;,\.]+/i, "");
       return word === expected;
     }
   }
 
   public onChangeCheckPunctuation(check: boolean) {
     this.checkPunctuation = check;
+  }
+
+  public onSpellCurrentWord() {
+    if (this.currentWord) {
+      let word = this.processExpected(this.currentWord, this.checkPunctuation);
+      (<any> SpeechActions).spellWord.defer(word);
+    }
+  }
+
+  public onSayCurrentWord() {
+    if (this.currentWord) {
+      let word = this.processExpected(this.currentWord, this.checkPunctuation);
+      (<any> SpeechActions).sayText.defer(word);
+    }
+  }
+
+  public onCheckCharsSoFar(word: string) {
+    if (!word || !this.currentWord) {
+      return false;
+    }
+    let expected = this.processExpected(this.currentWord, this.checkPunctuation);
+    if (word.length > expected.length) {
+      (<any> SoundActions).playSound.defer("inception-horn");
+      return false;
+    }
+
+    // Loop through both words making sure it's the same word
+    let i = 0;
+
+    while (i < word.length && i < expected.length) {
+      if (word.charAt(i) !== expected.charAt(i)) {
+        (<any> SoundActions).playSound.defer("inception-horn");
+        return false;
+      }
+      i++;
+    }
+
+    return true;
   }
 
 }

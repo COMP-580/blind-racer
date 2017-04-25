@@ -60,8 +60,26 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
     }
   }
 
+  public checkNumbers(e: React.KeyboardEvent<HTMLInputElement>) {
+    let keyCode = e.which;
+    if (keyCode === 49) {   // 1
+      GameActions.sayCurrentWord();
+    } else if (keyCode === 50) {    // 2
+      GameActions.spellCurrentWord();
+    } else if (keyCode === 51) {    // 3
+      GameActions.spellInput();
+    } else {
+      return false;
+    }
+    return true;
+  }
+
   public standardMode(e: React.KeyboardEvent<HTMLInputElement>) {
     e.preventDefault();
+
+    if (this.checkNumbers(e)) {
+      return;
+    }
 
     // Don't type if the game hasn't started
     if (!this.isPlaying) {
@@ -79,6 +97,10 @@ class AltTypingModeStore extends AbstractStoreModel<ITypingModeStoreState> imple
 
   public blindMode(e: React.KeyboardEvent<HTMLInputElement>) {
     e.preventDefault();
+
+    if (this.checkNumbers(e)) {
+      return;
+    }
 
     // Don't type if the game hasn't started
     if (!this.isPlaying) {
