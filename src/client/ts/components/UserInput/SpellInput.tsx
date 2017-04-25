@@ -15,7 +15,6 @@ class SpellInput extends React.Component<any, any> {
   }
 
   public onClick() {
-
     GameActions.spellInput();
   }
 

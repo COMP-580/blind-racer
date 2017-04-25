@@ -42,6 +42,15 @@ class AltSpeechStore extends AbstractStoreModel<ISpeechStoreState> implements IS
     this.bindAction(SettingsActions.changeSpeechVolume, this.onChangeSpeechVolume);
   }
 
+  public replacePunctuation(text: string) {
+    text = text.replace(/,/i, " comma ");
+    text = text.replace(/'/i, " apostrophe");
+    text = text.replace(/"/i, " quotes ");
+    text = text.replace(/\./i, " period ");
+    // text = text.replace(/ /i, " space ");
+    return text;
+  }
+
   public onSayText(text: string) {
     responsiveVoice.speak(text, null, {volume: this.volume});
   }
@@ -49,11 +58,11 @@ class AltSpeechStore extends AbstractStoreModel<ISpeechStoreState> implements IS
   public onSpellWord(word: string) {
     // Sanitize word
     word = word.toLowerCase();
-    word = word.replace(/[;,\.]+/i, "");
 
     // Separate by characters
     let characters = word.split("");
     let phrase = characters.join(" ");
+    phrase = this.replacePunctuation(phrase);
     responsiveVoice.speak(phrase, null, {volume: this.volume});
   }
 
