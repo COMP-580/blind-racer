@@ -47,6 +47,7 @@ import "./stores/VirtualKeyboardStore";
 
 // Enums
 import { ColorTheme, toColorTheme } from "./enums/ColorTheme";
+import { GameMode, toGameMode } from "./enums/GameMode";
 import { Modal } from "./enums/Modal";
 import { TypingMode, toTypingMode } from "./enums/TypingMode";
 
@@ -78,6 +79,7 @@ $(document).ready(() => {
 
   // Set defaults based off cookie values
   let colorTheme = toColorTheme(parseInt(Cookies.get("colorTheme"))) || ColorTheme.STANDARD;
+  let gameMode = toGameMode(parseInt(Cookies.get("gameMode"))) || GameMode.INTERMEDIATE;
   let typingMode = toTypingMode(parseInt(Cookies.get("typingMode"))) || TypingMode.STANDARD;
   let masterVolume = parseFloat(Cookies.get("masterVolume")) || 0.5;
   let soundVolume = parseFloat(Cookies.get("soundVolume")) || 0.5;
@@ -85,6 +87,7 @@ $(document).ready(() => {
   let checkPunctuation = Cookies.get("checkPunctuation") === "true" || false;
 
   SettingsActions.changeColorTheme(colorTheme);
+  SettingsActions.changeGameMode(gameMode);
   SettingsActions.changeTypingMode(typingMode);
   SettingsActions.changeMasterVolume(masterVolume);
   SettingsActions.changeSoundVolume(soundVolume);

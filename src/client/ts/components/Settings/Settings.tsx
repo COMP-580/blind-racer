@@ -7,6 +7,7 @@
 import * as React from "react";
 
 import ColorTheme from "./Form/ColorTheme";
+import GameMode from "./Form/GameMode";
 import Modes from "./Form/Modes";
 import Punctuation from "./Form/Punctuation";
 import Volume from "./Form/Volume/Volume";
@@ -21,6 +22,9 @@ class Settings extends React.Component<any, any> {
     return (
       <div id="game-settings">
         <legend className="legend">Settings</legend>
+
+        <h4>Game Modes</h4>
+        <GameMode />
 
         <h4>Typing Modes</h4>
         <Modes />

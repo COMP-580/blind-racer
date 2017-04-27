@@ -12,11 +12,13 @@ import { AbstractStoreModel, alt } from "../alt";
 import SettingsActions from "../actions/SettingsActions";
 
 import { ColorTheme } from "../enums/ColorTheme";
+import { GameMode } from "../enums/GameMode";
 import { TypingMode } from "../enums/TypingMode";
 
 interface ISettingsStoreState {
   colorTheme: ColorTheme;
   typingMode: TypingMode;
+  gameMode: GameMode;
   masterVolume: number;
   soundVolume: number;
   speechVolume: number;
@@ -27,6 +29,7 @@ class AltSettingsStore extends AbstractStoreModel<ISettingsStoreState> implement
 
   public colorTheme: ColorTheme;
   public typingMode: TypingMode;
+  public gameMode: GameMode;
   public masterVolume: number;
   public soundVolume: number;
   public speechVolume: number;
@@ -36,6 +39,7 @@ class AltSettingsStore extends AbstractStoreModel<ISettingsStoreState> implement
     super();
     this.colorTheme = ColorTheme.STANDARD;
     this.typingMode = TypingMode.STANDARD;
+    this.gameMode = GameMode.INTERMEDIATE;
     this.masterVolume = 0.5;
     this.soundVolume = 0.5;
     this.speechVolume = 0.5;
@@ -43,6 +47,7 @@ class AltSettingsStore extends AbstractStoreModel<ISettingsStoreState> implement
 
     this.bindAction(SettingsActions.changeColorTheme, this.onChangeColorTheme);
     this.bindAction(SettingsActions.changeTypingMode, this.onChangeTypingMode);
+    this.bindAction(SettingsActions.changeGameMode, this.onChangeGameMode);
     this.bindAction(SettingsActions.changeMasterVolume, this.onChangeMasterVolume);
     this.bindAction(SettingsActions.changeSoundVolume, this.onChangeSoundVolume);
     this.bindAction(SettingsActions.changeSpeechVolume, this.onChangeSpeechVolume);
@@ -58,6 +63,11 @@ class AltSettingsStore extends AbstractStoreModel<ISettingsStoreState> implement
   public onChangeTypingMode(typingMode: TypingMode) {
     this.typingMode = typingMode;
     Cookies.set("typingMode", typingMode);
+  }
+
+  public onChangeGameMode(gameMode: GameMode) {
+    this.gameMode = gameMode;
+    Cookies.set("gameMode", gameMode);
   }
 
   public onChangeMasterVolume(volume: number) {

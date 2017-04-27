@@ -7,6 +7,8 @@
 
 import { AbstractStoreModel, alt } from "../alt";
 
+import { GameMode } from "../enums/GameMode";
+
 import GameActions from "../actions/GameActions";
 import SettingsActions from "../actions/SettingsActions";
 import SoundActions from "../actions/SoundActions";
@@ -31,12 +33,16 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   public currentWord: string;
   public unfinishedWords: string[];
   public checkPunctuation: boolean;
+  public sentences: string[];
+  public alphabet: string[];
   public text: string[];
 
   constructor() {
     super();
     this.phrase = "";
     this.finishedWords = [];
+    this.sentences = text;
+    this.alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
     this.text = text;
     this.unfinishedWords = this.phrase.split(" ");
     this.currentWord = this.unfinishedWords[0];
@@ -47,6 +53,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     this.bindAction(GameActions.fetchGameText, this.onFetchGameText);
     this.bindAction(TypingActions.typeWord, this.onTypeWord);
     this.bindAction(SettingsActions.changeCheckPunctuation, this.onChangeCheckPunctuation);
+    this.bindAction(SettingsActions.changeGameMode, this.onChangeGameMode);
     this.bindAction(GameActions.spellCurrentWord, this.onSpellCurrentWord);
     this.bindAction(GameActions.sayCurrentWord, this.onSayCurrentWord);
     this.bindAction(GameActions.checkCharsSoFar, this.onCheckCharsSoFar);
@@ -58,8 +65,21 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
   }
 
   public onFetchGameText() {
-    let i = Math.floor(Math.random() * this.text.length);
-    let phrase = this.text[i];
+    let phrase;
+    if (this.text[0].length === 1) {   // Alphabet
+      let letters = [];
+      for (let i = 0; i < 10; i++) {
+        let j = Math.floor(Math.random() * this.text.length);
+        let letter = this.text[j];
+        letters.push(letter);
+      }
+      phrase = letters.join(" ");
+
+    } else {    // Sentences
+      let i = Math.floor(Math.random() * this.text.length);
+      phrase = this.text[i];
+    }
+
     this.parsePhrase(phrase);
   }
 
@@ -120,6 +140,16 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
 
   public onChangeCheckPunctuation(check: boolean) {
     this.checkPunctuation = check;
+  }
+
+  public onChangeGameMode(gameMode: GameMode) {
+    if (gameMode === GameMode.BEGINNER) {
+      this.text = this.alphabet;
+    } else if (gameMode === GameMode.INTERMEDIATE) {
+      this.text = this.sentences;
+    } else {
+      this.text = this.sentences;
+    }
   }
 
   public onSpellCurrentWord() {
