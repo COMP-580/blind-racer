@@ -105,13 +105,13 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
       (<any> TypingActions).wordSuccess.defer(word);
     } else {
       (<any> SpeechActions).sayText.defer(this.currentWord);
-      (<any> SoundActions).playSound.defer("inception-horn");
+      (<any> SoundActions).playSound.defer("wrong");
     }
 
     // Check if finished
     if (!this.currentWord) {
       this.currentWord = "";
-      (<any> SoundActions).playSound.defer("party-horn");
+      (<any> SoundActions).playSound.defer("fin");
       (<any> TimingActions).stopTyping.defer();
       (<any> GameActions).endGame.defer();
     }
@@ -175,7 +175,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     }
     let expected = this.processExpected(this.currentWord, this.checkPunctuation);
     if (word.length > expected.length) {
-      (<any> SoundActions).playSound.defer("inception-horn");
+      (<any> SoundActions).playSound.defer("wrong");
       return false;
     }
 
@@ -184,7 +184,7 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
 
     while (i < word.length && i < expected.length) {
       if (word.charAt(i) !== expected.charAt(i)) {
-        (<any> SoundActions).playSound.defer("inception-horn");
+        (<any> SoundActions).playSound.defer("wrong");
         return false;
       }
       i++;

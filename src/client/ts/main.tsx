@@ -95,9 +95,9 @@ $(document).ready(() => {
   SettingsActions.changeCheckPunctuation(checkPunctuation);
 
   // Load assets
-  SoundActions.loadSound({name: "inception-horn", path: "assets/sounds/inception-horn.mp3", volume: 1.0});
-  SoundActions.loadSound({name: "ding",           path: "assets/sounds/ding.mp3",           volume: 0.1});
-  SoundActions.loadSound({name: "party-horn",     path: "assets/sounds/party-horn.mp3",     volume: 0.5});
+  SoundActions.loadSound({name: "wrong",          path: "assets/sounds/wrong.mp3",   volume: 0.5});
+  SoundActions.loadSound({name: "ding",           path: "assets/sounds/ding.mp3",    volume: 0.05});
+  SoundActions.loadSound({name: "fin",            path: "assets/sounds/fin.mp3",     volume: 0.5});
 
   // Attach handlers
   require("./page-handlers");
