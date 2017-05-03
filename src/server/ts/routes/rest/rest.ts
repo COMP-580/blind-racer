@@ -82,6 +82,34 @@ router.get("/leaderboard", (req, res, next) => {
   });
 });
 
+// GET /leaderboard/deleteHourly
+router.get("/leaderboard/deleteHourly", (req, res, next) => {
+  logger.info("Wiping the hourly leaderboard");
+  mongoose.connection.db.dropCollection("hourlyleaderboards", (err: any, results) => {
+    if (err) {
+      logger.error(err);
+      res.status(500).send(err);
+    } else {
+      logger.debug("Finished wiping the hourly leaderboard");
+      res.send({success: true});
+    }
+  });
+});
+
+// GET /leaderboard/deleteDaily
+router.get("/leaderboard/deleteDaily", (req, res, next) => {
+  logger.info("Wiping the daily leaderboard");
+  mongoose.connection.db.dropCollection("dailyleaderboards", (err: any, results) => {
+    if (err) {
+      logger.error(err);
+      res.status(500).send(err);
+    } else {
+      logger.debug("Finished wiping the daily leaderboard");
+      res.send({success: true});
+    }
+  });
+});
+
 function querydb(res: any, query: any, success: any) {
   if (mongoose.connection.readyState === 0) {
     res.status(500).send({error: {message: "database down"}});
