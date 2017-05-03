@@ -26,7 +26,7 @@ class AboutModal extends React.Component<any, any> {
             </div>
 
             <div className="modal-body">
-              <p>Just a few things about us... This is cool.</p>
+              <p>This is a COMP-580 project by Samantha Lin, Daniel Nguyen, and Tony Zhu.</p>
             </div>
 
           </div>

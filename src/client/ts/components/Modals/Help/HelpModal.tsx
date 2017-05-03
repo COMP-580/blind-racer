@@ -26,7 +26,7 @@ class HelpModal extends React.Component<any, any> {
             </div>
 
             <div className="modal-body">
-              <p>This website does a lot of really cool stuff.</p>
+              <p>TypeZone's purpose is to help improve the keyboard competency of people with visual impairments.</p>
             </div>
 
           </div>
