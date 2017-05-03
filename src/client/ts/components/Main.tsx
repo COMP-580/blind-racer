@@ -70,8 +70,8 @@ class Main extends React.Component<undefined, undefined> {
                   </div>
                   <div className="text-center">
                     <SayCurrent />
-                    <SpellInput />
                     <SpellCurrent />
+                    <SpellInput />
                     <ToggleKeyboard />
                     <StartButton />
                   </div>
