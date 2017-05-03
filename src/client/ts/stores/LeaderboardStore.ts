@@ -9,6 +9,7 @@ import { AbstractStoreModel, alt } from "../alt";
 import GameActions from "../actions/GameActions";
 import LeaderboardActions from "../actions/LeaderboardActions";
 import ModalActions from "../actions/ModalActions";
+import SpeechActions from "../actions/SpeechActions";
 
 import { Modal } from "../enums/Modal";
 
@@ -49,8 +50,14 @@ class AltLeaderboardStore extends AbstractStoreModel<ILeaderboardStoreState> imp
 
     // Check if it's a top score...
     let score = (<ITimerStoreState> TimerStore.getState()).wpm;
-    if (score > this.hourlyScores[this.hourlyScores.length - 1].score) {
+    if (score > this.dailyScores[this.dailyScores.length - 1].score) {
       (<any> ModalActions).openModal.defer(Modal.SUBMIT_SCORE);
+      (<any> SpeechActions).sayText.defer("New daily high score! " + score + " words per minute");
+    } else if (score > this.hourlyScores[this.hourlyScores.length - 1].score) {
+      (<any> ModalActions).openModal.defer(Modal.SUBMIT_SCORE);
+      (<any> SpeechActions).sayText.defer("New hourly high score! " + score + " words per minute");
+    } else {
+      (<any> SpeechActions).sayText.defer(score + " words per minute");
     }
   }
 

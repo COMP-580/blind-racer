@@ -47,7 +47,7 @@ class Modes extends React.Component<any, any> {
           <label><input id="typing-mode-standard" type="radio" name="ModeType" value="1"/>Standard</label>
         </div>
         <div className="radio">
-          <label><input id="typing-mode-repeat" type="radio" name="ModeType" value="2"/>Repeat</label>
+          <label><input id="typing-mode-repeat" type="radio" name="ModeType" value="2"/>Playback</label>
         </div>
       </div>
     );

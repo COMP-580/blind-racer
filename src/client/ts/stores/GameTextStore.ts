@@ -170,6 +170,9 @@ class AltGameTextStore extends AbstractStoreModel<IGameTextStoreState> implement
     if (!word || !this.currentWord) {
       return false;
     }
+    if (!this.checkPunctuation) {
+      word = word.toLowerCase();
+    }
     let expected = this.processExpected(this.currentWord, this.checkPunctuation);
     if (word.length > expected.length) {
       (<any> SoundActions).playSound.defer("inception-horn");
